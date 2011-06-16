@@ -16,7 +16,7 @@ public:
 	wdgSlider(string caption,
 			  float &myValue,
 			  float min, float max,
-			  float stepSize,
+			  float stepSize=1,
 			  string units="",
 			  bool readOnly=false);
 

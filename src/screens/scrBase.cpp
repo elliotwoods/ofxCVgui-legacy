@@ -50,8 +50,10 @@ bool scrBase::transformMouse(float mouseX, float mouseY, float &screenX, float &
 // transforms the mouse into screen coords
 // returns 'true' if mouse is inside this screen
 {
-	screenX = (mouseX - float(_bounds.x)) / _bounds.width;
-	screenY = (mouseY - float(_bounds.y)) / _bounds.height;
+    ofRectangle liveBounds = getLiveBounds();
+    
+	screenX = (mouseX - float(liveBounds.x)) / liveBounds.width;
+	screenY = (mouseY - float(liveBounds.y)) / liveBounds.height;
 	
 	if (screenX >= 0 && screenX <= 1)
 		if (screenY >= 0 && screenY <= 1)
