@@ -1,7 +1,7 @@
 #pragma once
 /*
- *  ofxKCScreensGUI.h
- *  Kimchi and Chips' Screens GUI
+ *  ofxCVGUI.h
+ *  Kimchi and Chips' CV GUI (aka Screens)
  *
  *  Created by Elliot Woods on 27/01/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.
@@ -30,33 +30,41 @@
 #include "wdgXYZ.h"
 
 #include "ofMain.h"
+#include "ofEvents.h"
 
-
-class ofxKCScreensGUI : public GUIGlobal, public GUIAssets
+class ofxCVgui : public GUIGlobal, public GUIAssets
 {
 public:
-							ofxKCScreensGUI(float x, float y, float width, float height);
+    ofxCVgui();
+    
+    void                    init();
 	
 	scrBase*				mainScreen;
 	
 	bool					doFullscreen();
 	
-	void					update();
-	void					draw();
+	void					update(ofEventArgs & args);
+	void					draw(ofEventArgs & args);
 	
-	void					mouseMoved(int x, int y);
-	void					mouseDown(int x, int y);
-	void					mouseReleased(int x, int y);
-	void					mouseDragged(int x, int y, int button);
+    void                    mouseMoved(ofMouseEventArgs & args);
+	void					mousePressed(ofMouseEventArgs & args);
+	void					mouseReleased(ofMouseEventArgs & args);
+	void					mouseDragged(ofMouseEventArgs & args);
 	void					updateMouse(int x, int y);
 	
+    void                    keyPressed(ofKeyEventArgs & args);
+    
+    void                    windowResized(ofResizeEventArgs & args);
 	void					showInterface(bool value) { if (value) g_enableUserInterface(); else g_disableUserInterface(); }
 	void					interfaceNudge() {g_userAction(); }
-
-	void					resize(int x, int y);
+    
+    void                    setBounds(ofRectangle &bounds);
 	
 private:
-	float					_x, _y, _width, _height;
+    ofRectangle             _bounds;
+    
 	bool					isMaximised;
+    bool                    isInitialised;
+    
 	int						_mousex, _mousey;
 };
