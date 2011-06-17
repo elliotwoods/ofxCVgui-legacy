@@ -92,6 +92,13 @@ int scrGroup::findScreen(int x, int y)
 
 //////////////////////////////////////////////////////
 
+void scrGroup::mousePressed(int x, int y, int button)
+{
+	FOREACH_SCREEN
+    if (screens[iScreen]->isHit(x,y))
+        screens[iScreen]->mousePressed(x,y,button);	
+}
+
 void scrGroup::mouseMoved(int x, int y)
 {
 	FOREACH_SCREEN
@@ -99,18 +106,18 @@ void scrGroup::mouseMoved(int x, int y)
 			screens[iScreen]->mouseMoved(x,y);
 }
 
-void scrGroup::mouseDown(int x, int y)
-{
-	FOREACH_SCREEN
-		if (screens[iScreen]->isHit(x,y))
-			screens[iScreen]->mouseDown(x,y);	
-}
-
-void scrGroup::mouseReleased(int x, int y)
+void scrGroup::mouseReleased(int x, int y, int button)
 {
 	FOREACH_SCREEN
 		if (screens[iScreen]->hasCursorAttached)
-			screens[iScreen]->mouseDown(x,y);		
+			screens[iScreen]->mouseReleased(x,y,button);		
+}
+
+void scrGroup::mouseDragged(int x, int y, int dx, int dy, int button)
+{
+	FOREACH_SCREEN
+    if (screens[iScreen]->hasCursorAttached)
+        screens[iScreen]->mouseDragged(x,y,dx,dy,button);	
 }
 
 //////////////////////////////////////////////////////

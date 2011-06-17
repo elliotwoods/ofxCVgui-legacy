@@ -15,13 +15,11 @@
 #include "ofMain.h"
 #include "ofEvents.h"
 
-#include "scrBaseMarkers.h"
-
 #include "Histogram.h"
 
 #include "btnBase.h"
 
-class scrBase : public scrBaseMarkers, public GUIAssets, public GUIGlobal
+class scrBase : public GUIAssets, public GUIGlobal
 {
 public:
 	scrBase(string _caption);
@@ -31,9 +29,9 @@ public:
 	
 	bool					isHit(int x, int y);
 	
-	virtual void			mouseDown(int x, int y);
-	virtual void			mouseMoved(int x, int y) { };
-	virtual void			mouseReleased(int x, int y) {hasCursorAttached=false; };
+	virtual void			mousePressed(int x, int y, int button);
+	virtual void			mouseMoved(int x, int y);
+	virtual void			mouseReleased(int x, int y, int button) {hasCursorAttached=false; };
 	virtual void			mouseDragged(int x, int y, int dx, int dy, int button) { };
 	
 	virtual bool			hitMaximise(int x, int y);

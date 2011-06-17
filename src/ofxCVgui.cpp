@@ -96,7 +96,7 @@ void ofxCVgui::mousePressed(ofMouseEventArgs & args)
     }
     
 	if (mainScreen->isHit(args.x, args.y))
-		mainScreen->mouseDown(args.x, args.y);
+		mainScreen->mousePressed(args.x, args.y, args.button);
 	
 	updateMouse(args.x, args.y);
 }
@@ -110,7 +110,7 @@ void ofxCVgui::mouseReleased(ofMouseEventArgs & args)
     }
     
 	if (mainScreen->hasCursorAttached)
-		mainScreen->mouseReleased(args.x, args.y);
+		mainScreen->mouseReleased(args.x, args.y, args.button);
 	
 	updateMouse(args.x, args.y);
 }

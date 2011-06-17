@@ -39,25 +39,25 @@ void scrGroupBase::mouseMoved(int x, int y)
 	screens[iScreen]->mouseMoved(x,y);
 }
 
-void scrGroupBase::mouseDown(int x, int y)
+void scrGroupBase::mousePressed(int x, int y, int button)
 {
 	int iScreen = findScreen(x,y);
 	
 	if (iScreen==-1)
 		return;
 	
-	screens[iScreen]->mouseDown(x,y);	
+	screens[iScreen]->mousePressed(x,y,button);	
 	
-	scrBase::mouseDown(x, y);
+	scrBase::mousePressed(x, y, button);
 }
 
-void scrGroupBase::mouseReleased(int x, int y)
+void scrGroupBase::mouseReleased(int x, int y, int button)
 {
 	FOREACH_SCREEN
 		if (screens[iScreen]->hasCursorAttached)
-			screens[iScreen]->mouseReleased(x,y);	
+			screens[iScreen]->mouseReleased(x,y,button);	
 	
-	scrBase::mouseReleased(x, y);
+	scrBase::mouseReleased(x, y, button);
 }
 
 void scrGroupBase::mouseDragged(int x, int y, int dx, int dy, int button)

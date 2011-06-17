@@ -40,11 +40,18 @@ bool scrBase::isHit(int x, int y)
 	return _bounds.inside(x, y);
 }
 
-void scrBase::mouseDown(int x, int y)
+void scrBase::mousePressed(int x, int y, int button)
 {
     ofPoint mouseXY = ofPoint(x,y);
     ofNotifyEvent(evtCursorPressed, mouseXY, this);
 }
+
+void scrBase::mouseMoved(int x, int y)
+{
+    ofPoint mouseXY = ofPoint(x,y);
+    ofNotifyEvent(evtCursorMove, mouseXY, this);
+}
+
 
 bool scrBase::transformMouse(float mouseX, float mouseY, float &screenX, float &screenY)
 // transforms the mouse into screen coords
@@ -77,15 +84,6 @@ void scrBase::drawChrome()
 	
 	int x2, y2;
 	x2 = x+width; y2 = y+height;
-	
-	//
-	// MARKERS
-	//
-	
-	if (_showMarkers)
-	{
-		drawMarkers(x,y,width,height);
-	}
 	
 	
 	//

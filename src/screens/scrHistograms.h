@@ -22,8 +22,7 @@ public:
 	
 	void						addHistogram(Histogram &histogram);
 	
-	virtual void				mouseDown(int x, int y);
-
+	virtual void				mousePressed(int x, int y, int button);
 private:
 	std::vector<Histogram*>	_vecHistograms;
 };

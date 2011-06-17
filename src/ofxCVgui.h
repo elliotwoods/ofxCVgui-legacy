@@ -29,6 +29,7 @@
 #include "wdgButton.h"
 #include "wdgXYZ.h"
 #include "wdgColour.h"
+#include "wdgHistogram.h"
 
 #include "ofMain.h"
 #include "ofEvents.h"

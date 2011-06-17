@@ -71,7 +71,7 @@ void scrGroupTabbed::drawContent()
 
 ////////////////////////////////////////////////////////////
 
-void scrGroupTabbed::mouseDown(int x, int y)
+void scrGroupTabbed::mousePressed(int x, int y, int button)
 {
 	//check to see whether our mouse is
 	//hitting the tab region
@@ -82,7 +82,7 @@ void scrGroupTabbed::mouseDown(int x, int y)
 		y>_bounds.y && y<_bounds.y+tabRegionHeight)
 		iSelection = (x-_bounds.x)/tabWidth;
 	else
-		scrGroupBase::mouseDown(x,y);
+		scrGroupBase::mousePressed(x,y,button);
 
 }
 
