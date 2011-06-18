@@ -42,7 +42,14 @@ void ofxCVgui::init()
 
 bool ofxCVgui::doFullscreen()
 {
-	return mainScreen->hitMaximise(_mousex, _mousey);
+	if (mainScreen->hitMaximise(_mousex, _mousey))
+    {
+        ofSetFullscreen(true);
+        return true;
+    } else {
+        ofSetFullscreen(false);
+        return false;
+    }
 }
 
 void ofxCVgui::update(ofEventArgs & args)

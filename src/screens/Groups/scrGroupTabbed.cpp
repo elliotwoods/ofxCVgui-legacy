@@ -65,7 +65,8 @@ void scrGroupTabbed::drawContent()
 		ofPopStyle();
 	}
 	
-	screens[iSelection]->draw();
+    if (screens.size() != 0)
+        screens[iSelection]->draw();
 	
 }
 

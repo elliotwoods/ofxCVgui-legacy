@@ -25,6 +25,16 @@ void wdgBase::setBounds(int x, int y, int width)
 	_width = width;
 }
 
+void wdgBase::mousePressed(int x, int y, int button)
+{
+    _isMouseAttached = true;
+}
+
+void wdgBase::mouseReleased(int x, int y, int button)
+{
+    _isMouseAttached = false;
+}
+
 bool wdgBase::isHit(int x, int y)
 {
 	return (x>=_x && y>=_y &&

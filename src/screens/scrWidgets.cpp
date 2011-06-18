@@ -37,7 +37,8 @@ void scrWidgets::mousePressed(int x, int y, int button)
 		
 		yOffset -= _widgets[iWidget]->height + WIDGET_PADDING;
 	}
-	
+    
+    scrBase::mousePressed(x,y,button);
 }
 
 void scrWidgets::mouseReleased(int x, int y, int button)
@@ -50,6 +51,8 @@ void scrWidgets::mouseReleased(int x, int y, int button)
 			break;
 		}
     }
+    
+    scrBase::mouseReleased(x,y,button);
 	
 }
 

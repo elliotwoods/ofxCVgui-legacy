@@ -17,9 +17,9 @@ public:
 
 	virtual void	draw() = 0;
 	
-	virtual void	mousePressed(int x, int y, int button) { _isMouseAttached = true; };
+	virtual void	mousePressed(int x, int y, int button) ;
     virtual void	mouseDragged(int x, int y, int dx, int dy, int button) { };
-    virtual void	mouseReleased(int x, int y, int button) { _isMouseAttached = false; };
+    virtual void	mouseReleased(int x, int y, int button);
     virtual void	mouseMoved(int x, int y) { };
     
 	bool			isHit(int x, int y);

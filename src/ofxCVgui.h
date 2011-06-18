@@ -30,6 +30,7 @@
 #include "wdgXYZ.h"
 #include "wdgColour.h"
 #include "wdgHistogram.h"
+#include "wdgFPS.h"
 
 #include "ofMain.h"
 #include "ofEvents.h"

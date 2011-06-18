@@ -59,7 +59,7 @@ void wdgXYZ::draw()
 	ofPopStyle();
 }
 
-void wdgXYZ::mouseDown(int x, int y)
+void wdgXYZ::mousePressed(int x, int y, int button)
 {
 	if (_readOnly)
 		return;

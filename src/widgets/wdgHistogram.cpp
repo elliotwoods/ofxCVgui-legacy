@@ -195,6 +195,7 @@ template<typename ChannelType>
 void wdgHistogram<ChannelType>::mousePressed(int x, int y, int button)
 {
     mouseDown(x, y);
+    wdgBase::mousePressed(x,y,button);
 }
 
 template<typename ChannelType>
@@ -207,6 +208,12 @@ template<typename ChannelType>
 void wdgHistogram<ChannelType>::mouseDown(int x, int y)
 {
     float newSelection = float(x-_x)/float(_width) * float(_binCount);
+    
+    if (newSelection < 0)
+        newSelection = 0;
+    if (newSelection > _binCount-1)
+        newSelection = _binCount-1;
+    
     *_selection = newSelection;
     
     ofNotifyEvent(evtSelectionChange, *_selection, this);

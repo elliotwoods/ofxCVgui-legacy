@@ -21,11 +21,13 @@ public:
 			  bool readOnly=false);
 
 	void		draw();
-	void		mouseDown(int x, int y);
+	void		mousePressed(int x, int y, int button);
+	void		mouseDragged(int x, int y, int dx, int dy, int button);    
 	
 	bool		isValueNew();
 	
 protected:
+    void        mouseDown(int x, int y);
 	float		&_value;
 	bool		_hasNewValue;
 	

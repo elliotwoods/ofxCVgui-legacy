@@ -93,7 +93,7 @@ void wdgButton::draw()
 	_hasDrawn = true;
 
 }
-void wdgButton::mouseDown(int x, int y)
+void wdgButton::mousePressed(int x, int y, int button)
 {
 	if (enabled)
 		if (_isBang)

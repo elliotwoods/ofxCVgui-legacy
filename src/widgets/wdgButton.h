@@ -26,7 +26,7 @@ public:
 			  int inHeight = 30);
 	
 	void		draw();
-	void		mouseDown(int x, int y);
+	void		mousePressed(int x, int y, int button);
 	
 	bool		getBang();
 

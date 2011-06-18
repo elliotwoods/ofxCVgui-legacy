@@ -52,6 +52,17 @@ void wdgSlider::draw()
 	ofPopStyle();
 }
 
+void wdgSlider::mousePressed(int x, int y, int button)
+{
+    mouseDown(x, y);
+    wdgBase::mousePressed(x, y, button);
+}
+
+void wdgSlider::mouseDragged(int x, int y, int dx, int dy, int button)
+{
+    mouseDown(x, y);
+}
+
 void wdgSlider::mouseDown(int x, int y)
 {
 	if (_readOnly)
@@ -60,6 +71,11 @@ void wdgSlider::mouseDown(int x, int y)
 	_value = ofMap(x, _x, _x+_width, _min, _max, false);
 	_value = round(_value/_stepSize) * _stepSize;
 	
+    if (_value < _min)
+        _value = _min;
+    if (_value > _max)
+        _value = _max;
+    
 	_hasNewValue = true;
 }
 
