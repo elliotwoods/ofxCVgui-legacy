@@ -109,7 +109,7 @@ void ofxCVgui::mouseReleased(ofMouseEventArgs & args)
         return;
     }
     
-	if (mainScreen->hasCursorAttached)
+	if (mainScreen->getIsCursorAttached())
 		mainScreen->mouseReleased(args.x, args.y, args.button);
 	
 	updateMouse(args.x, args.y);
@@ -128,7 +128,7 @@ void ofxCVgui::mouseDragged(ofMouseEventArgs & args)
 	
 	if (args.button==0)
 	{
-		if (mainScreen->hasCursorAttached)
+		if (mainScreen->getIsCursorAttached())
 			mainScreen->mouseDragged(args.x, args.y, dx, dy, 0);
 	} else {
 		mainScreen->mouseDragged(args.x, args.y, dx, dy, 1);

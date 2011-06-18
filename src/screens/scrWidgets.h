@@ -17,7 +17,10 @@ class scrWidgets : public scrBase
 public:
 	scrWidgets(string _caption);
 	
-	void				mouseDown(int x, int y);
+	void				mousePressed(int x, int y, int button);
+    void                mouseReleased(int x, int y, int button);
+    void                mouseDragged(int x, int y, int dx, int dy, int button);
+    void                mouseMoved(int x, int y);
 	
 	void				push(wdgBase *widget);
 

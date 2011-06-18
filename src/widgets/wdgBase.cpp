@@ -10,7 +10,8 @@
 #include "wdgBase.h"
 
 wdgBase::wdgBase(string _caption) :
-height(_height), y(_y)
+height(_height), y(_y),
+_isMouseAttached(false)
 {
 	caption = _caption;
 	_height = 30;
@@ -28,6 +29,11 @@ bool wdgBase::isHit(int x, int y)
 {
 	return (x>=_x && y>=_y &&
 			x<=_x+_width && y<=_y+_height);
+}
+
+bool wdgBase::getIsMouseAttached()
+{
+    return _isMouseAttached;
 }
 
 void wdgBase::setHeight(int newHeight)

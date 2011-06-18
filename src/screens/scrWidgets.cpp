@@ -17,7 +17,7 @@ scrWidgets::scrWidgets(string _caption)
 	_sumHeights=0;
 }
 
-void scrWidgets::mouseDown(int x, int y)
+void scrWidgets::mousePressed(int x, int y, int button)
 {
 	int currentx, currenty, currentw, currenth;
 	getLiveBounds(currentx, currenty, currentw, currenth);
@@ -31,12 +31,45 @@ void scrWidgets::mouseDown(int x, int y)
 	{
 		if  (yOffset <= _widgets[iWidget]->height)
 		{
-			_widgets[iWidget]->mouseDown(x,y);
+			_widgets[iWidget]->mousePressed(x,y,button);
 			break;
 		}
 		
 		yOffset -= _widgets[iWidget]->height + WIDGET_PADDING;
 	}
+	
+}
+
+void scrWidgets::mouseReleased(int x, int y, int button)
+{
+	FOREACH_WIDGET
+    {
+        if (_widgets[iWidget]->getIsMouseAttached())
+        {
+			_widgets[iWidget]->mouseReleased(x,y,button);
+			break;
+		}
+    }
+	
+}
+
+void scrWidgets::mouseDragged(int x, int y, int dx, int dy, int button)
+{
+	FOREACH_WIDGET
+    {
+        if (_widgets[iWidget]->getIsMouseAttached())
+        {
+			_widgets[iWidget]->mouseDragged(x,y,dx,dy,button);
+			break;
+		}
+    }
+	
+}
+
+void scrWidgets::mouseMoved(int x, int y)
+{
+	FOREACH_WIDGET
+        _widgets[iWidget]->mouseMoved(x,y);
 	
 }
 

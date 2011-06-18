@@ -182,9 +182,35 @@ void wdgHistogram<ChannelType>::push(const ChannelType &channel)
 template<typename ChannelType>
 void wdgHistogram<ChannelType>::setSelection(ChannelType &channel)
 {    
-    _selection = &channel;
+    *_selection = channel;
 }
 
+template<typename ChannelType>
+void wdgHistogram<ChannelType>::setSelection(ChannelType *channel)
+{    
+    _selection = channel;
+}
+
+template<typename ChannelType>
+void wdgHistogram<ChannelType>::mousePressed(int x, int y, int button)
+{
+    mouseDown(x, y);
+}
+
+template<typename ChannelType>
+void wdgHistogram<ChannelType>::mouseDragged(int x, int y, int dx, int dy, int button)
+{
+    mouseDown(x, y);
+}
+
+template<typename ChannelType>
+void wdgHistogram<ChannelType>::mouseDown(int x, int y)
+{
+    float newSelection = float(x-_x)/float(_width) * float(_binCount);
+    *_selection = newSelection;
+    
+    ofNotifyEvent(evtSelectionChange, *_selection, this);
+}
 template class wdgHistogram<unsigned char>;
 template class wdgHistogram<unsigned int>;
 template class wdgHistogram<int>;

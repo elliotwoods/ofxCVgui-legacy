@@ -22,16 +22,19 @@ class wdgHistogram : public wdgBase
         void    uninitialise();
     
         void    mousePressed(int x, int y, int button);
-        void    mouseDragged(int x, int y, int button);
+        void    mouseDragged(int x, int y, int dx, int dy, int button);
     
         void    clear();
         void    push(const ChannelType &channel);
     
         ChannelType getSelection() const { return *_selection; };
         void setSelection(ChannelType &channel);
+        void setSelection(ChannelType *channel);
         
+        ofEvent<ChannelType>    evtSelectionChange;
         
     protected:
+        void    mouseDown(int x, int y);
         bool    initialised;
         ChannelType     _binCount;
     

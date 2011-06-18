@@ -31,8 +31,8 @@ public:
 	
 	virtual void			mousePressed(int x, int y, int button);
 	virtual void			mouseMoved(int x, int y);
-	virtual void			mouseReleased(int x, int y, int button) {hasCursorAttached=false; };
-	virtual void			mouseDragged(int x, int y, int dx, int dy, int button) { };
+	virtual void			mouseReleased(int x, int y, int button) {_isCursorAttached=false; };
+	virtual void			mouseDragged(int x, int y, int dx, int dy, int button);
 	
 	virtual bool			hitMaximise(int x, int y);
 	virtual void			hitMaximise(int x, int y, bool input);
@@ -47,8 +47,10 @@ public:
 	
 	void					updateInterface();
 	bool					isUserActive();
-	
-	bool					hasCursorAttached;
+    
+    bool                    getIsCursorAttached() const {
+        return _isCursorAttached;
+    };
 
     bool					transformMouse(float mouseX, float mouseY, float &screenX, float &screenY);
     
@@ -69,6 +71,7 @@ protected:
 	bool					_isFullscreen;
 	
 	ofPoint					_ptCursorPosition;
+    bool                    _isCursorAttached;
 	
 	string					_strStatus;
 
@@ -80,6 +83,7 @@ protected:
 	int						_mousex, _mousey;
 	
 	bool					_hasChrome;
+    
 
 };
 

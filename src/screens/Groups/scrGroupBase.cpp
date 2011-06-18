@@ -54,7 +54,7 @@ void scrGroupBase::mousePressed(int x, int y, int button)
 void scrGroupBase::mouseReleased(int x, int y, int button)
 {
 	FOREACH_SCREEN
-		if (screens[iScreen]->hasCursorAttached)
+		if (screens[iScreen]->getIsCursorAttached())
 			screens[iScreen]->mouseReleased(x,y,button);	
 	
 	scrBase::mouseReleased(x, y, button);
@@ -65,7 +65,7 @@ void scrGroupBase::mouseDragged(int x, int y, int dx, int dy, int button)
 	FOREACH_SCREEN
 		if (button==0)
 		{
-			if (screens[iScreen]->hasCursorAttached)
+			if (screens[iScreen]->getIsCursorAttached())
 				screens[iScreen]->mouseDragged(x,y,dx,dy,0);
 		} else
 			screens[iScreen]->mouseDragged(x,y,dx,dy,1);

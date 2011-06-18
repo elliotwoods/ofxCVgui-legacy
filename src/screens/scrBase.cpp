@@ -18,7 +18,7 @@ isFullscreen(_isFullscreen)
 //	ofAddListener(_btnMaximise->buttonHit, this, &scrBase::hitMaximise);
 	_isFullscreen = false;
 	
-	hasCursorAttached = false;
+	_isCursorAttached = false;
 	
 	caption = _caption;
 	
@@ -42,6 +42,8 @@ bool scrBase::isHit(int x, int y)
 
 void scrBase::mousePressed(int x, int y, int button)
 {
+    _isCursorAttached = true;
+    
     ofPoint mouseXY = ofPoint(x,y);
     ofNotifyEvent(evtCursorPressed, mouseXY, this);
 }
@@ -52,6 +54,11 @@ void scrBase::mouseMoved(int x, int y)
     ofNotifyEvent(evtCursorMove, mouseXY, this);
 }
 
+void scrBase::mouseDragged(int x, int y, int dx, int dy, int button)
+{
+    ofPoint mouseXY = ofPoint(x,y);
+    ofNotifyEvent(evtCursorPressed, mouseXY, this);
+}
 
 bool scrBase::transformMouse(float mouseX, float mouseY, float &screenX, float &screenY)
 // transforms the mouse into screen coords
