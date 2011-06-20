@@ -33,7 +33,7 @@ void scrGroupBase::mouseMoved(int x, int y)
 {
 	int iScreen = findScreen(x,y);
 	
-	if (iScreen==-1)
+	if (iScreen==-1 || screens.size() == 0)
 		return;
 
 	screens[iScreen]->mouseMoved(x,y);
@@ -43,7 +43,7 @@ void scrGroupBase::mousePressed(int x, int y, int button)
 {
 	int iScreen = findScreen(x,y);
 	
-	if (iScreen==-1)
+	if (iScreen==-1 || screens.size() == 0)
 		return;
 	
 	screens[iScreen]->mousePressed(x,y,button);	

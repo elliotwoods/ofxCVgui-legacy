@@ -28,7 +28,7 @@ _value(myValue)
 
 void wdgSlider::draw()
 {
-	float valRounded = round(_value/_stepSize) * _stepSize;
+	float valRounded = round((_value-_min)/_stepSize) * _stepSize + _min;
 	int nDecimals = max(0,int(-log((float)_stepSize)/log((float)10)));
 	string measurement = ofToString(valRounded, nDecimals);
 	measurement += " " + _units;
@@ -69,7 +69,7 @@ void wdgSlider::mouseDown(int x, int y)
 		return;
 	
 	_value = ofMap(x, _x, _x+_width, _min, _max, false);
-	_value = round(_value/_stepSize) * _stepSize;
+	_value = round((_value-_min)/_stepSize) * _stepSize + _min;
 	
     if (_value < _min)
         _value = _min;

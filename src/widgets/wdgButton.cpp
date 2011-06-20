@@ -121,3 +121,9 @@ bool wdgButton::getBang()
 	}
 		
 }
+
+void wdgButton::setBang()
+{
+    if (_isBang)
+        _valueBang = true;
+}

@@ -29,6 +29,7 @@ public:
 	void		mousePressed(int x, int y, int button);
 	
 	bool		getBang();
+    void        setBang();
 
 	bool		enabled;
 protected:

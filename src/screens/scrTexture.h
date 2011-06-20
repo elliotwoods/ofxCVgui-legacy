@@ -16,8 +16,11 @@ class scrTexture : public scrBase {
 public:
 	scrTexture(ofTexture &texture, string _caption = "");
 	
+    ofEvent<ofRectangle>    evtDraw;
+    
 protected:
 	void			drawContent();
+    void            drawEventContent();
 	
 	ofTexture		& _texture;
 	
