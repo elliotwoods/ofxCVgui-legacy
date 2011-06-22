@@ -8,10 +8,9 @@
  */
 
 #include "scrWidgets.h"
-#include "ofxDirList.h"
 #include "wdgButton.h"
 
-class scrFileSelect : public scrWidgets, public ofxDirList
+class scrFileSelect : public scrWidgets, public ofDirectory
 {
 public:
 	scrFileSelect(string caption, string path, string extension);
