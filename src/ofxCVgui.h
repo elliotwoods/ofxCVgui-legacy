@@ -46,6 +46,7 @@ public:
 	
 	bool					doFullscreen();
 	
+	void					draw();
 	void					update(ofEventArgs & args);
 	void					draw(ofEventArgs & args);
 	
@@ -63,11 +64,18 @@ public:
     
     void                    setBounds(ofRectangle &bounds);
 	
+	void					setDrawOnEvent(bool b);
+	void					setResizeOnEvent(bool b);
+	
 private:
+	void					_draw();
     ofRectangle             _bounds;
     
 	bool					isMaximised;
     bool                    isInitialised;
     
 	int						_mousex, _mousey;
+	
+	bool					_drawOnEvent;
+	bool					_resizeOnEvent;
 };

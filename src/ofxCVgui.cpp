@@ -13,6 +13,7 @@
 ofxCVgui::ofxCVgui()
 {
     isInitialised = false;
+	_drawOnEvent = false;
 }
 
 void ofxCVgui::init()
@@ -68,15 +69,28 @@ void ofxCVgui::update(ofEventArgs & args)
 		ofHideCursor();
 }
 
+void ofxCVgui::draw()
+{
+	if (_drawOnEvent)
+		ofLogError() << "ofxCVgui :: draw(). We're drawing on events, please don't try and draw manually. it'll happen automatically. Else use setDrawOnEvent(false) . ";
+	else
+		_draw();
+}
 void ofxCVgui::draw(ofEventArgs & args)
 {
-    if (!isInitialised)
+    draw();
+}
+
+void ofxCVgui::_draw()
+{
+	if (!isInitialised)
     {
         ofLog(OF_LOG_ERROR, "ofxCVgui::draw : not yet initialised");
         return;
     }
     
 	mainScreen->draw();
+
 }
 
 //------------------------------------------------------------------------------------------------
@@ -157,6 +171,36 @@ void ofxCVgui::setBounds(ofRectangle &bounds)
     _bounds = bounds;
     mainScreen->setBounds(_bounds);
 }
+
+void ofxCVgui::setDrawOnEvent(bool b)
+{
+	if (b == _drawOnEvent)
+		return;
+	
+	if (b)
+		ofAddListener(ofEvents.draw, this, &ofxCVgui::draw);
+	
+	if (!b)
+		ofRemoveListener(ofEvents.draw, this, &ofxCVgui::draw);
+	
+	_drawOnEvent = b;
+}
+
+void ofxCVgui::setResizeOnEvent(bool b)
+{
+	if (b == _drawOnEvent)
+		return;
+	
+	if (b)
+		ofAddListener(ofEvents.windowResized, this, &ofxCVgui::windowResized);
+	
+	if (!b)
+		ofRemoveListener(ofEvents.windowResized, this, &ofxCVgui::windowResized);
+	
+	_drawOnEvent = b;
+}
+
+
 //------------------------------------------------------------------------------------------------
 
 void ofxCVgui::keyPressed(ofKeyEventArgs & args)
