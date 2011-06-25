@@ -20,6 +20,7 @@
 #include "scrWidgets.h"
 #include "scrFileSelect.h"
 #include "scrPointCloud.h"
+#include "scrVbo.h"
 
 #include "scrGroupGrid.h"
 #include "scrGroupTabbed.h"
