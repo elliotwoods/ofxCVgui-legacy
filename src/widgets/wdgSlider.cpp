@@ -16,7 +16,8 @@ wdgSlider::wdgSlider(string caption,
 							  string units,
 							  bool readOnly) :
 wdgBase(caption),
-_value(myValue)
+_value(&myValue),
+_nValues(1)
 {
 	_min = min;
 	_max = max;
@@ -24,13 +25,49 @@ _value(myValue)
 	_units = units;
 	_hasNewValue = false;
 	_readOnly = readOnly;
+	
+	_height = 15 + 10 * _nValues;
+}
+
+wdgSlider::wdgSlider(string caption,
+					 ofVec3f &myValue,
+					 float min, float max,
+					 float stepSize,
+					 string units,
+					 bool readOnly) :
+wdgBase(caption),
+_value(&myValue.x),
+_nValues(3)
+{
+	_min = min;
+	_max = max;
+	_stepSize = stepSize;
+	_units = units;
+	_hasNewValue = false;
+	_readOnly = readOnly;
+	
+	_height = 15 + 10 * _nValues;
 }
 
 void wdgSlider::draw()
 {
-	float valRounded = round((_value-_min)/_stepSize) * _stepSize + _min;
+	//find rounded value(s)
+	float *valRounded = new float[_nValues];
+	
 	int nDecimals = max(0,int(-log((float)_stepSize)/log((float)10)));
-	string measurement = ofToString(valRounded, nDecimals);
+	
+	string measurement;
+	for (int i=0; i<_nValues; i++)
+	{
+		valRounded[i] = round((_value[i]-_min)/_stepSize) * _stepSize + _min;
+		
+		if (i !=0)
+			measurement += ", ";
+		
+			
+		measurement += ofToString(valRounded[i], nDecimals);
+	}
+	
 	measurement += " " + _units;
 	
 	ofPushStyle();
@@ -42,18 +79,33 @@ void wdgSlider::draw()
 		ofSetColor(255, 255, 255);
 	else
 		ofSetColor(100, 100, 100);
-	ofSetLineWidth(2);
-	ofRect(_x,_y+15,_width,10);
 	
+	//draw outline
+	ofSetLineWidth(2);
+	ofRect(_x,_y+15,_width,10 * _nValues);
+	
+	//draw fill(s)
 	ofFill();
-	ofRect(_x,_y+15,
-				ofMap(_value, _min, _max, 0, _width, true),
+	for (int i=0; i<_nValues; i++)
+		ofRect(_x,_y+15 + i*10,
+				ofMap(_value[i], _min, _max, 0, _width, true),
 				10);
 	ofPopStyle();
+	
+	//delete arrays
+	delete[] valRounded;
 }
 
 void wdgSlider::mousePressed(int x, int y, int button)
-{
+{	
+	_iSelected = (y - 15 - _y) / 10;
+	
+	if (_iSelected < 0 || _iSelected >= _nValues)
+	{
+		_iSelected = -1;
+		return;
+	}
+	
     mouseDown(x, y);
     wdgBase::mousePressed(x, y, button);
 }
@@ -68,13 +120,15 @@ void wdgSlider::mouseDown(int x, int y)
 	if (_readOnly)
 		return;
 	
-	_value = ofMap(x, _x, _x+_width, _min, _max, false);
-	_value = round((_value-_min)/_stepSize) * _stepSize + _min;
+	const int &i = _iSelected;
 	
-    if (_value < _min)
-        _value = _min;
-    if (_value > _max)
-        _value = _max;
+	_value[i] = ofMap(x, _x, _x+_width, _min, _max, false);
+	_value[i] = round((_value[i]-_min)/_stepSize) * _stepSize + _min;
+	
+    if (_value[i] < _min)
+        _value[i] = _min;
+    if (_value[i] > _max)
+        _value[i] = _max;
     
 	_hasNewValue = true;
 }

@@ -14,13 +14,13 @@ class wdgCounter : public wdgBase
 {
 public:
 	wdgCounter(string caption,
-			  int &myValue,
-			  int myMax=-1);
+			  unsigned int const &myValue,
+			  unsigned int myMax=0);
 	
 	void		draw();
-	void		setMax(int myMax);
+	void		setMax(unsigned int const myMax);
 	
 protected:
-	int			&_value;
-	int			_max;	
+	unsigned int	const	&_value;
+	unsigned int			_max;	
 };

@@ -15,7 +15,7 @@
 class scrWidgets : public scrBase
 {
 public:
-	scrWidgets(string _caption);
+	scrWidgets(string _caption = "Controls");
 	
 	void				mousePressed(int x, int y, int button);
     void                mouseReleased(int x, int y, int button);

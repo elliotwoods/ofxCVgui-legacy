@@ -72,9 +72,6 @@ void wdgHistogram<ChannelType>::draw()
     ofRectangle drawBounds = ofRectangle(_x, _y+15, _width, 30);
     
     ofPushStyle();
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_ONE, GL_ONE);
 
     //CAPTION
     ofSetColor(255,255,255);

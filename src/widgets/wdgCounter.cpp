@@ -10,15 +10,15 @@
 #include "wdgCounter.h"
 
 wdgCounter::wdgCounter(string caption,
-		  int &myValue,
-		  int myMax) :
+		  unsigned int const &myValue,
+		  unsigned int myMax) :
 wdgBase(caption),
 _value(myValue)
 {
 	setMax(myMax);	
 }
 
-void wdgCounter::setMax(int myMax)
+void wdgCounter::setMax(unsigned int myMax)
 {
 	int rowWidth = _width / (COUNTER_RADIUS*4);
 	int rows = max((int)ceil(float(myMax) / float(rowWidth)),1);
@@ -29,13 +29,13 @@ void wdgCounter::setMax(int myMax)
 
 void wdgCounter::draw()
 {
-    int valueScaled = _value;
-    int maxScaled = _max;
+    unsigned int valueScaled = _value;
+    unsigned int maxScaled = _max;
     
     while (valueScaled > 50)
     {
-        valueScaled /= 10;
-        maxScaled /= 10;
+        valueScaled /= 2;
+        maxScaled /= 2;
     }
     
 	string numDisplay = ofToString(_value);
@@ -51,9 +51,9 @@ void wdgCounter::draw()
 	
 	int row, col;
 	int rowWidth = _width / (COUNTER_RADIUS*3);
-	int maxCounters = max(valueScaled,maxScaled);
+	unsigned int maxCounters = max(valueScaled,maxScaled);
 	
-	for (int i=0; i < maxCounters; i++)
+	for (unsigned int i=0; i < maxCounters; i++)
 	{
 		if (valueScaled>_value)
 			ofNoFill();

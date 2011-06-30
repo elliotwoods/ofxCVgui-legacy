@@ -14,23 +14,26 @@
 class scrVbo : public scrBase {
 	
 public:
-	scrVbo(string caption, vector<ofVec3f> &xyz, vector<ofColor> &color);
-	~scrVbo();
+	scrVbo(vector<ofVec3f> &xyz, vector<ofColor> &color, string caption);
+	scrVbo(vector<ofVec3f> &xyz, string caption);	
+	~scrVbo() { };
+	
+	void			update();
 	
 	void			setDynamicPositions(bool b);
 	void			setDynamicColors(bool b);
-	void			updateStatic();
 	
-	int				pointSize;
+	float			pointSize;
 	
+	ofEasyCam		&getCamera() { return camera; }
 protected:
 	virtual void	drawContent();
 	unsigned int	getNPoints();
 	
 	ofEasyCam		camera;
 	
-    vector<ofVec3f> const	&_xyz;
-	vector<ofColor> const	&_color;
+    vector<ofVec3f>	*_xyz;
+	vector<ofColor>	*_color;
 	
 	
 	ofVbo			_vbo;

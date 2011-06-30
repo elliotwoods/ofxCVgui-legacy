@@ -20,6 +20,13 @@ public:
 			  string units="",
 			  bool readOnly=false);
 
+	wdgSlider(string caption,
+			  ofVec3f &myValue,
+			  float min, float max,
+			  float stepSize=1,
+			  string units="",
+			  bool readOnly=false);
+	
 	void		draw();
 	void		mousePressed(int x, int y, int button);
 	void		mouseDragged(int x, int y, int dx, int dy, int button);    
@@ -28,7 +35,10 @@ public:
 	
 protected:
     void        mouseDown(int x, int y);
-	float		&_value;
+	
+	
+	float		*_value;
+	int const	_nValues;
 	bool		_hasNewValue;
 	
 	bool		_readOnly;
@@ -37,7 +47,9 @@ protected:
 	float		_stepSize;
 	
 	string		_units;
+	
+	int			_iSelected;
 
-	//stupid vc++ doesn't have this..phhff
+	//vc++ doesn't have this(?!!)..phhff
 	int			round(float x) { return floor(x+0.5); }
 };

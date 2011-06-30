@@ -20,14 +20,26 @@ scrGroupSwap(caption)
 ////////////////////////////////////////////////////////////
 
 void scrGroupTabbed::drawContent()
-{
+{	
+	if (screens.size() == 0)
+		return;
+	
+	//draw content
+	screens[iSelection]->draw();
+	
+	//if we don't want the chrome
+	//then let's stop drawing here
+	if (!g_isInterfaceEnabled || screens[iSelection]->isFullscreen)
+		return;
+	
+	//draw tabs
 	bool selected;
 	int textOffset = (tabRegionHeight>24 ? BORDER_OFFSET * 2 : 0);
 	
 	for (int i=0; i<screens.size(); i++)
 	{
 		selected = (i==iSelection);
-
+		
 		ofPushStyle();
 		
 		//draw background
@@ -37,7 +49,7 @@ void scrGroupTabbed::drawContent()
 			ofSetColor(0, 0, 0);
 		ofFill();
 		ofSetLineWidth(1);
-
+		
 		ofRect(_bounds.x+i*tabWidth, _bounds.y,
 			   tabWidth, tabRegionHeight);
 		
@@ -64,9 +76,6 @@ void scrGroupTabbed::drawContent()
 		
 		ofPopStyle();
 	}
-	
-    if (screens.size() != 0)
-        screens[iSelection]->draw();
 	
 }
 
