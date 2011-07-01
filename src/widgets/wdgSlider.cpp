@@ -30,6 +30,26 @@ _nValues(1)
 }
 
 wdgSlider::wdgSlider(string caption,
+					 ofVec2f &myValue,
+					 float min, float max,
+					 float stepSize,
+					 string units,
+					 bool readOnly) :
+wdgBase(caption),
+_value(&myValue.x),
+_nValues(2)
+{
+	_min = min;
+	_max = max;
+	_stepSize = stepSize;
+	_units = units;
+	_hasNewValue = false;
+	_readOnly = readOnly;
+	
+	_height = 15 + 10 * _nValues;
+}
+
+wdgSlider::wdgSlider(string caption,
 					 ofVec3f &myValue,
 					 float min, float max,
 					 float stepSize,

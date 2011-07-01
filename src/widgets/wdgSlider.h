@@ -21,6 +21,13 @@ public:
 			  bool readOnly=false);
 
 	wdgSlider(string caption,
+			  ofVec2f &myValue,
+			  float min, float max,
+			  float stepSize=1,
+			  string units="",
+			  bool readOnly=false);
+	
+	wdgSlider(string caption,
 			  ofVec3f &myValue,
 			  float min, float max,
 			  float stepSize=1,
