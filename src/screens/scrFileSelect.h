@@ -23,7 +23,7 @@ public:
     
     string              getSelectedPath();
 
-	bool				*selected;
+	vector<char>		selected;
 	const int			&nFiles;
 	
 protected:		

@@ -13,8 +13,8 @@
 scrBase::scrBase(string _caption) :
 isFullscreen(_isFullscreen)
 {
-	_btnMaximise = new btnBase(button_toggle, *_assetButtonPlus, *_assetButtonPlus_over);
-	_vecInterfaceButtons.push_back(_btnMaximise);
+	//_btnMaximise = new btnBase(button_toggle, *_assetButtonPlus, *_assetButtonPlus_over);
+	//_vecInterfaceButtons.push_back(_btnMaximise);
 //	ofAddListener(_btnMaximise->buttonHit, this, &scrBase::hitMaximise);
 	_isFullscreen = false;
 	

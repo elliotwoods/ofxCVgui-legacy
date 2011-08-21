@@ -14,7 +14,7 @@
 class scrVbo : public scrBase {
 	
 public:
-	scrVbo(vector<ofVec3f> &xyz, vector<ofColor> &color, string caption);
+	scrVbo(vector<ofVec3f> &xyz, vector<ofFloatColor> &color, string caption);
 	scrVbo(vector<ofVec3f> &xyz, string caption);	
 	~scrVbo() { };
 	
@@ -32,8 +32,8 @@ protected:
 	
 	ofEasyCam		camera;
 	
-    vector<ofVec3f>	*_xyz;
-	vector<ofColor>	*_color;
+    vector<ofVec3f>			*_xyz;
+	vector<ofFloatColor>	*_color;
 	
 	
 	ofVbo			_vbo;

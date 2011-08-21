@@ -18,8 +18,6 @@ public:
 	static void				assetUnload();
 	
 protected:
-	static ofImage			*_assetButtonPlus;
-	static ofImage			*_assetButtonPlus_over;
 	
 	static ofImage			*_assetButtonSwitch;
 	static ofImage			*_assetButtonSwitch_over;

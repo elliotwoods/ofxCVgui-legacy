@@ -15,7 +15,6 @@ nFiles(_nFiles)
 {
 	_path = path;
 	allowExt(extension);
-	selected = new bool[1];
 	
 	////////////////////////////
 	// CONTROLS
@@ -61,14 +60,13 @@ void scrFileSelect::refresh()
 	
 	doResize();
 	
-	delete[] selected;
-	selected = new bool[_nFiles];
-	
+	selected.resize(_nFiles);
+
 	for (int i=0; i<_nFiles; i++)
 	{
 		selected[i]=false;
 		push(new wdgButton(getName(i),
-						   selected[i],
+						   *(bool*)&selected[i],
 							15));
 	}
 	

@@ -76,7 +76,7 @@ protected:
 	string					_strStatus;
 
 	std::vector<btnBase*>	_vecInterfaceButtons;
-	btnBase					*_btnMaximise;
+	//btnBase				*_btnMaximise;
 	
 	float					_lastLocalInterfaceUpdate;
 	
