@@ -1,6 +1,6 @@
 /*
  *  scrGroupBase.cpp
- *  PC Encode
+ *  MapTools Structured Light
  *
  *  Created by Elliot Woods on 27/10/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.
@@ -25,6 +25,13 @@ scrBase(caption)
 void scrGroupBase::push(scrBase *addScreen)
 {
 	screens.push_back(addScreen);
+}
+
+//////////////////////////////////////////////////////
+
+void scrGroupBase::push(scrBase &addScreen)
+{
+	screens.push_back(&addScreen);
 }
 
 //////////////////////////////////////////////////////
@@ -114,4 +121,8 @@ void scrGroupBase::hitMaximise(int x, int y, bool isMaximised)
 	} else {
 		hitMaximise(x,y);
 	}
+}
+
+scrBase& scrGroupBase::operator[](const int i) {
+	return *screens[i];
 }

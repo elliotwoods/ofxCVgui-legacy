@@ -1,7 +1,7 @@
 #pragma once
 /*
  *  scrPointCloud.h
- *  PC Encode
+ *  MapTools Structured Light
  *
  *  Created by Elliot Woods on 04/11/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.
@@ -22,6 +22,9 @@ public:
 	int				pointSize;
 
     void            clear();
+	void			setWith(float *positions, int nPoints) {
+		setWith(positions, positions, nPoints);
+	};
 	void			setWith(float *positions, float *colours, int nPoints);
 	void			keyPressed(int key);
 	

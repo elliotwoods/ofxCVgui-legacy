@@ -1,7 +1,7 @@
 #pragma once
 /*
  *  scrWidgets.h
- *  PC Encode
+ *  MapTools Structured Light
  *
  *  Created by Elliot Woods on 02/11/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.

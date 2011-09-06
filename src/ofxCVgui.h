@@ -21,8 +21,9 @@
 #include "scrFileSelect.h"
 #include "scrPointCloud.h"
 #include "scrVbo.h" //might remove this.
-#include "scr3D.h"
-#include "scrDrawEvent.h"
+#include "scrDraw3D.h"
+#include "scrDraw2D.h"
+#include "scrViewport.h"
 
 #include "scrGroupGrid.h"
 #include "scrGroupTabbed.h"

@@ -1,19 +1,19 @@
 //
-//  scr3D.h
+//  scrDraw2D.h
 //  PosRotSca-test
 //
 //  Created by Elliot Woods on 26/06/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Kimchi and Chips. All rights reserved.
 //
 
 #include "ofMain.h"
 
 #include "scrBase.h"
 
-class scr3D : public scrBase {
+class scrDraw2D : public scrBase {
 	
 public:
-	scr3D(ofNode& node, string caption);
+	scrDraw2D(string caption, ofBaseDraws& d);
 	
 	float			pointSize;
 	
@@ -22,5 +22,5 @@ protected:
 	virtual void	drawContent();
 	
 	ofEasyCam		camera;
-	ofNode&			_node;
+	ofBaseDraws&	_draw;
 };

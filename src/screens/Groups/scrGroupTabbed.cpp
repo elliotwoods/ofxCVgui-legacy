@@ -1,6 +1,6 @@
 /*
  *  scrGroupTabbed.cpp
- *  PC Encode
+ *  MapTools Structured Light
  *
  *  Created by Elliot Woods on 31/10/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.

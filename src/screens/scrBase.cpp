@@ -23,6 +23,8 @@ isFullscreen(_isFullscreen)
 	caption = _caption;
 	
 	_hasChrome = true;
+	enabled = true;
+	_lock = 0;
 
 }
 
@@ -44,7 +46,8 @@ void scrBase::mousePressed(int x, int y, int button)
 {
     _isCursorAttached = true;
     
-    ofPoint mouseXY = ofPoint(x,y);
+	ofRectangle b = getLiveBounds();
+    ofPoint mouseXY = ofPoint((float(x)-b.x)/b.width, (float(y)-b.y)/b.height);
     ofNotifyEvent(evtCursorPressed, mouseXY, this);
 }
 
@@ -76,9 +79,26 @@ bool scrBase::transformMouse(float mouseX, float mouseY, float &screenX, float &
 	return false;
 }
 
+void scrBase::setLock(ofMutex &m) {
+	_lock = &m;
+}
+
 void scrBase::draw()
 {
-	drawContent();
+	if (enabled) {
+		
+		if (_lock != 0)
+			if (!_lock->tryLock())
+				return;
+		drawContent();
+		
+		ofRectangle liveBounds = getLiveBounds();
+		ofNotifyEvent(evtDraw, liveBounds, this);
+		
+		if (_lock != 0)
+			_lock->unlock();
+		
+	}
 	
 	if (_hasChrome && g_isInterfaceEnabled)
 		drawChrome();
@@ -128,18 +148,21 @@ void scrBase::drawChrome()
 	//
 	//CAPTION
 	//
-	
 	ofPushStyle();
 	ofSetColor(255,255,255);
 	ofSetLineWidth(0);
 	ofFill();
-	ofRectangle boundBox = _typer->getStringBoundingBox(caption, x, y+GUI_FONT_SIZE);
-	ofRect(boundBox.x, boundBox.y, boundBox.width+6, boundBox.height+6);
+	ofRectangle boundBox;
+	boundBox.x = x;
+	boundBox.y = y;
+	boundBox.width = caption.length() * 10 + 6;
+	boundBox.height = 16;
+	ofRect(boundBox);
 	ofPopStyle();
 	
 	ofPushStyle();
 	ofSetColor(0, 0, 0);
-	_typer->drawString(caption, x+3, y+GUI_FONT_SIZE+3);
+	ofDrawBitmapString(caption, x+3, y+14);
 	ofPopStyle();
 }
 

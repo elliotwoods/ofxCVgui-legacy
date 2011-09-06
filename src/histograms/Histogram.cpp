@@ -150,7 +150,7 @@ void Histogram::draw(int x, int y, int width, int height)
 		//
 		ofPushStyle();
 		ofSetColor(0);
-		_typer->drawString(_name, x, y+height-3);
+		ofDrawBitmapString(_name, x, y+height-3);
 		ofPopStyle();
 		
 		//

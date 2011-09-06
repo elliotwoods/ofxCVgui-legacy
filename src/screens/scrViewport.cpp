@@ -1,21 +1,21 @@
 //
-//  scrDrawEvent.cpp
+//  scrViewport.cpp
 //  calibrate-cam,proj,depth
 //
 //  Created by Elliot Woods on 27/06/2011.
 //  Copyright 2011 Kimchi and Chips. All rights reserved.
 //
 
-#include "scrDrawEvent.h"
+#include "scrViewport.h"
 
 
-scrDrawEvent::scrDrawEvent(string _caption) :
+scrViewport::scrViewport(string _caption) :
 scrBase(_caption)
 {
 	
 }
 
-void scrDrawEvent::drawContent()
+void scrViewport::drawContent()
 {
     if (evtDraw.empty())
         return;

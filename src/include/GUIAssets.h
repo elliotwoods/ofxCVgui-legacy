@@ -26,5 +26,5 @@ protected:
 	
 	static int				_colSwatch1[5];	
 	
-	static ofTrueTypeFont	*_typer;
+//	static ofTrueTypeFont	*_typer;
 };

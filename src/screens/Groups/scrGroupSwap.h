@@ -1,6 +1,6 @@
 /*
  *  scrGroupSwap.h
- *  PC Encode
+ *  MapTools Structured Light
  *
  *  Created by Elliot Woods on 29/10/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.

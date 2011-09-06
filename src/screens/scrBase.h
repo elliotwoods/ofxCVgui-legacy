@@ -39,6 +39,7 @@ public:
 	const bool				&isFullscreen;
 	
 	void					setBounds(ofRectangle &bounds);
+    ofRectangle				getLiveBounds(); //also considers fullscreen
 	virtual void			doResize() { };
 	
 	void					getStatus(string &strStatus) { };
@@ -54,14 +55,17 @@ public:
 
     bool					transformMouse(float mouseX, float mouseY, float &screenX, float &screenY);
     
+	void					setLock(ofMutex& m);
+	
+	ofEvent<ofRectangle>	evtDraw;
 	ofEvent<ofPoint>		evtCursorMove;
 	ofEvent<ofPoint>		evtCursorPressed;
 	
 	string					caption;
+	bool					enabled;
 	
 protected:
 	void					getLiveBounds(int &x, int &y, int &w, int &h); //also considers fullscreen
-    ofRectangle				getLiveBounds(); //also considers fullscreen
 	virtual void			drawContent()=0;
 	void					drawChrome();
 	
@@ -83,7 +87,8 @@ protected:
 	int						_mousex, _mousey;
 	
 	bool					_hasChrome;
-    
+
+	ofMutex*  		_lock;
 
 };
 

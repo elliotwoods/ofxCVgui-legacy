@@ -1,6 +1,6 @@
 #pragma once
 //
-//  scrDrawEvent.h
+//  scrViewport.h
 //  calibrate-cam,proj,depth
 //
 //  Created by Elliot Woods on 27/06/2011.
@@ -10,10 +10,10 @@
 #include "scrBase.h"
 #include "ofEvents.h"
 
-class scrDrawEvent : public scrBase {
+class scrViewport : public scrBase {
 	
 public:
-	scrDrawEvent(string _caption = "");
+	scrViewport(string _caption = "");
 	
     ofEvent<ofRectangle>    evtDraw;
     

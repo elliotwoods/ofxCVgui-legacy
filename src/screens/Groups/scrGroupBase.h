@@ -1,7 +1,7 @@
 #pragma once
 /*
  *  scrGroupBase.h
- *  PC Encode
+ *  MapTools Structured Light
  *
  *  Created by Elliot Woods on 27/10/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.
@@ -16,6 +16,7 @@ public:
 	scrGroupBase(string caption = "");
 	
 	void				push(scrBase *addScreen);
+	void				push(scrBase &addScreen);
 	
 	virtual int			findScreen(int x, int y) { return -1; };
 	
@@ -28,6 +29,7 @@ public:
 	void				hitMaximise(int x, int y, bool isMaximised);
 	vector<scrBase*>	screens;
 	
+	scrBase&			operator[](const int i);
 	
 protected:
 	virtual void		drawContent() = 0;
