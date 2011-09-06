@@ -26,6 +26,7 @@ public:
 		setWith(positions, positions, nPoints);
 	};
 	void			setWith(float *positions, float *colours, int nPoints);
+	void			setWith(double *positions, int nPoints);
 	void			keyPressed(int key);
 	
 	static ofPoint	spin;
@@ -47,4 +48,7 @@ protected:
 	GLuint			vbo[2];	
 	
     int             _viewport_temp[4];
+
+	float			*localPositions;
+	bool			useLocal;
 };

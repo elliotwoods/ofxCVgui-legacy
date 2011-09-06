@@ -8,7 +8,7 @@
 
 #include "scrVbo.h"
 
-scrVbo::scrVbo(vector<ofVec3f> &xyz, vector<ofColor> &color, string caption) : 
+scrVbo::scrVbo(vector<ofVec3f> &xyz, vector<ofFloatColor> &color, string caption) : 
 _xyz(&xyz),
 _color(&color),
 dynamicPositions(true),
@@ -39,7 +39,7 @@ pointSize(1)
 	
 	unsigned int nPoints = getNPoints();
 	
-	_color = new vector<ofColor>(nPoints);
+	_color = new vector<ofFloatColor>(nPoints);
 	
 	for (int i=0; i<nPoints; i++)
 		(*_color)[i] = ofColor(255,255,255);

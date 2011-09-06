@@ -23,6 +23,8 @@ _isSet(false)
 	glGenBuffersARB(1, &vbo[0]);
 	glGenBuffersARB(1, &vbo[1]);
 //	ofAddListener(ofEvents.keyPressed, this, &scrPointCloud::keyPressed);
+
+	useLocal = false;
 }
 
 scrPointCloud::~scrPointCloud()
@@ -146,6 +148,28 @@ void scrPointCloud::setWith(float *positions, float *colours, int nPoints)
 	_nPoints = nPoints;
     
     _isSet = true;
+}
+
+void scrPointCloud::setWith(double *positions, int nPoints) {
+	if (useLocal)
+	{
+		delete[] localPositions;
+	}
+	if (nPoints > 0)
+	{
+		localPositions = new float[nPoints*3];
+		useLocal = true;
+	}
+
+	for (int i=0; i<nPoints; i++)
+	{
+		for (int j=0; j<3; j++)
+			localPositions[i*3+j] = positions[i*3+j];
+	}
+
+	
+	setWith(localPositions, localPositions, nPoints);
+
 }
 
 void scrPointCloud::keyPressed(int key)
