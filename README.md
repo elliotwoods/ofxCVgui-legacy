@@ -14,8 +14,8 @@ Currently ofxCvGUI is also being designed in mind to cooperate with ofxCv.
 
 ##To Do
 
-Easier to setup:
-
-* requires main screen to attach on init
-* complains if assets aren't available
-* move setLock from scrDraw3d to base
+* Easier to setup, because currently:
+	* requires main screen to attach on init
+	* complains if assets aren't available
+	* move setLock from scrDraw3d to base
+* Remove old histogram concept (replace with new one).
