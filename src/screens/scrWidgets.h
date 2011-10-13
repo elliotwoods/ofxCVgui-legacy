@@ -23,6 +23,7 @@ public:
     void                mouseMoved(int x, int y);
 	
 	void				push(wdgBase *widget);
+	void				push(wdgBase &widget);
 
 	void				doResize();
 	

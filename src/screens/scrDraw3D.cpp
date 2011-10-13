@@ -12,13 +12,14 @@ scrDraw3D::scrDraw3D(string caption, ofNode& node) :
 _node(node),
 scrBase(caption)
 {
+	ofAddListener(ofEvents.keyPressed, this, &scrDraw3D::keyPressed);
 }
 
 void scrDraw3D::drawContent()
 {
 	ofRectangle viewport = getLiveBounds();
 	
-	camera.begin(viewport);	
+	camera.begin(viewport);
 	glEnable(GL_DEPTH_TEST);
 	_node.draw();
 

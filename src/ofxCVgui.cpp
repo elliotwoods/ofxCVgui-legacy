@@ -1,6 +1,6 @@
 /*
  *  ofxCVGUI.cpp
- *  Kimchi and Chips' CV GUI (aka Screens)
+ *  ofxCVgui
  *
  *
  *  Created by Elliot Woods on 27/01/2010.
@@ -10,14 +10,12 @@
 
 #include "ofxCVgui.h"
 
-ofxCVgui::ofxCVgui()
-{
+ofxCVgui::ofxCVgui() {
     isInitialised = false;
 	_drawOnEvent = false;
 }
 
-void ofxCVgui::init()
-{
+void ofxCVgui::init(scrBase& mainScreen) {
     isInitialised = true;
 	isMaximised = false;
 
@@ -25,6 +23,8 @@ void ofxCVgui::init()
     _bounds.y = 0;
     _bounds.width = ofGetWidth();
     _bounds.height = ofGetHeight();
+	
+	setMainScreen(mainScreen);
 	
 	assetLoad();
     
@@ -41,8 +41,7 @@ void ofxCVgui::init()
     
 }
 
-bool ofxCVgui::doFullscreen()
-{
+bool ofxCVgui::doFullscreen() {
 	if (mainScreen->hitMaximise(_mousex, _mousey))
     {
         ofSetFullscreen(true);
@@ -91,6 +90,10 @@ void ofxCVgui::_draw()
     
 	mainScreen->draw();
 
+}
+
+void ofxCVgui::setMainScreen(scrBase& s) {
+	mainScreen = &s;
 }
 
 //------------------------------------------------------------------------------------------------

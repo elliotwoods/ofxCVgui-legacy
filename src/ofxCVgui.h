@@ -15,7 +15,6 @@
 
 #include "Histogram.h"
 
-#include "scrTexture.h"
 #include "scrHistograms.h"
 #include "scrWidgets.h"
 #include "scrFileSelect.h"
@@ -45,9 +44,7 @@ class ofxCVgui : public GUIGlobal, public GUIAssets
 public:
     ofxCVgui();
     
-    void                    init();
-	
-	scrBase*				mainScreen;
+    void                    init(scrBase& mainScreen);
 	
 	bool					doFullscreen();
 	
@@ -72,10 +69,15 @@ public:
 	void					setDrawOnEvent(bool b);
 	void					setResizeOnEvent(bool b);
 	
+	void					setMainScreen(scrBase& s);
+
+	
 private:
 	void					_draw();
     ofRectangle             _bounds;
     
+	scrBase*				mainScreen;
+	
 	bool					isMaximised;
     bool                    isInitialised;
     

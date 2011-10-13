@@ -12,13 +12,11 @@
 #define FOREACH_WIDGET for (int iWidget=0; iWidget<_widgets.size(); iWidget++)
 
 scrWidgets::scrWidgets(string _caption)
-: scrBase(_caption)
-{
+: scrBase(_caption) {
 	_sumHeights=0;
 }
 
-void scrWidgets::mousePressed(int x, int y, int button)
-{
+void scrWidgets::mousePressed(int x, int y, int button) {
 	int currentx, currenty, currentw, currenth;
 	getLiveBounds(currentx, currenty, currentw, currenth);
 	
@@ -29,8 +27,7 @@ void scrWidgets::mousePressed(int x, int y, int button)
 	
 	FOREACH_WIDGET
 	{
-		if  (yOffset <= _widgets[iWidget]->height)
-		{
+		if  (yOffset <= _widgets[iWidget]->height) {
 			_widgets[iWidget]->mousePressed(x,y,button);
 			break;
 		}
@@ -41,12 +38,10 @@ void scrWidgets::mousePressed(int x, int y, int button)
     scrBase::mousePressed(x,y,button);
 }
 
-void scrWidgets::mouseReleased(int x, int y, int button)
-{
+void scrWidgets::mouseReleased(int x, int y, int button) {
 	FOREACH_WIDGET
     {
-        if (_widgets[iWidget]->getIsMouseAttached())
-        {
+        if (_widgets[iWidget]->getIsMouseAttached()) {
 			_widgets[iWidget]->mouseReleased(x,y,button);
 			break;
 		}
@@ -56,12 +51,10 @@ void scrWidgets::mouseReleased(int x, int y, int button)
 	
 }
 
-void scrWidgets::mouseDragged(int x, int y, int dx, int dy, int button)
-{
+void scrWidgets::mouseDragged(int x, int y, int dx, int dy, int button) {
 	FOREACH_WIDGET
     {
-        if (_widgets[iWidget]->getIsMouseAttached())
-        {
+        if (_widgets[iWidget]->getIsMouseAttached()) {
 			_widgets[iWidget]->mouseDragged(x,y,dx,dy,button);
 			break;
 		}
@@ -69,15 +62,13 @@ void scrWidgets::mouseDragged(int x, int y, int dx, int dy, int button)
 	
 }
 
-void scrWidgets::mouseMoved(int x, int y)
-{
+void scrWidgets::mouseMoved(int x, int y) {
 	FOREACH_WIDGET
         _widgets[iWidget]->mouseMoved(x,y);
 	
 }
 
-void scrWidgets::push(wdgBase *widget)
-{
+void scrWidgets::push(wdgBase *widget) {
 	int x, y, w, h;
 	getLiveBounds(x, y, w, h);
 	
@@ -89,23 +80,24 @@ void scrWidgets::push(wdgBase *widget)
 	_sumHeights += widget->height + WIDGET_PADDING;
 }
 
-void scrWidgets::doResize()
-{
+void scrWidgets::push(wdgBase &w) {
+	this->push(&w);
+}
+
+void scrWidgets::doResize() {
 	int x, y, w, h;
 	getLiveBounds(x, y, w, h);
 	
 	_sumHeights = WIDGET_PADDING;
 	
-	FOREACH_WIDGET
-	{
+	FOREACH_WIDGET {
 		_widgets[iWidget]->setBounds(x+WIDGET_PADDING, y+_sumHeights+WIDGET_PADDING,
 									 w - 2*WIDGET_PADDING);
 		_sumHeights += _widgets[iWidget]->height + WIDGET_PADDING;
 	}
 }
 
-void scrWidgets::drawContent()
-{
+void scrWidgets::drawContent() {
 	FOREACH_WIDGET
 		_widgets[iWidget]->draw();
 }

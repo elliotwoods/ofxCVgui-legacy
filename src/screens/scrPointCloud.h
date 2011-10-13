@@ -10,7 +10,7 @@
 
 #include "ofMain.h"
 
-#include "scrTexture.h"
+#include "scrBase.h"
 
 class scrPointCloud : public scrBase {
 	

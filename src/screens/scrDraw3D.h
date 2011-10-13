@@ -15,11 +15,14 @@ class scrDraw3D : public scrBase {
 public:
 	scrDraw3D(string caption, ofNode& node);
 	
-	float			pointSize;
+	void			keyPressed(ofKeyEventArgs & args);
 	
-	ofEvent<ofNode>	evtDraw3D;
+	float			pointSize;
+	ofEvent<ofNode>	evtDraw3D; ///< differs from standard event, in that it is triggered after the transforms have been applied
+	
 protected:
 	virtual void	drawContent();
+	
 	
 	ofEasyCam		camera;
 	ofNode&			_node;

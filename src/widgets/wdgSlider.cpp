@@ -1,6 +1,6 @@
 /*
  *  wdgSlider.cpp
- *  MapTools Structured Light
+ *  ofxCVgui
  *
  *  Created by Elliot Woods on 02/11/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.

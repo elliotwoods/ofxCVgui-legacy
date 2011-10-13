@@ -1,6 +1,6 @@
 /*
  *  wdgSlider.h
- *  MapTools Structured Light
+ *  ofxCVgui
  *
  *  Created by Elliot Woods on 02/11/2010.
  *  Copyright 2010 Kimchi and Chips. All rights reserved.
@@ -57,6 +57,6 @@ protected:
 	
 	int			_iSelected;
 
-	//vc++ doesn't have this(?!!)..phhff
+	//vc++ doesn't have this(?!!)..
 	int			round(float x) { return floor(x+0.5); }
 };

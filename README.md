@@ -12,10 +12,11 @@ Commonly GUI's in openFrameworks are things that you put on top of your main dis
 
 Currently ofxCvGUI is also being designed in mind to cooperate with ofxCv.
 
+Also ofxCvGUI works in a little more OO way than other GUI's (which are generally procedurally defined). This has the dis-advantage that you sometimes have to write more code to define your GUI.
+
 ##To Do
 
-* Easier to setup, because currently:
+* Easier to setup:
 	* requires main screen to attach on init
-	* complains if assets aren't available
-	* move setLock from scrDraw3d to base
+	* complains if assets aren't available (do we need assets? can we replace all with ofDrawBitmapString?)
 * Remove old histogram concept (replace with new one).

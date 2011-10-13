@@ -17,10 +17,8 @@ public:
 	
 	float			pointSize;
 	
-	ofEasyCam		&getCamera() { return camera; }
 protected:
 	virtual void	drawContent();
 	
-	ofEasyCam		camera;
 	ofBaseDraws&	_draw;
 };
