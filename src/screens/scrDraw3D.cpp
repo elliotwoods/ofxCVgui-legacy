@@ -13,6 +13,9 @@ _node(node),
 scrBase(caption)
 {
 	ofAddListener(ofEvents.keyPressed, this, &scrDraw3D::keyPressed);
+	camera.setDistance(1.0f);
+	camera.setNearClip(0.01f);
+	
 }
 
 void scrDraw3D::drawContent()
@@ -27,4 +30,24 @@ void scrDraw3D::drawContent()
 	glDisable(GL_DEPTH_TEST);
 	
 	camera.end();
+}
+
+void scrDraw3D::keyPressed(ofKeyEventArgs &args) {
+	switch(args.key) {
+		case OF_KEY_RIGHT:
+			camera.truck(0.1f);
+			break;
+			
+		case OF_KEY_LEFT:
+			camera.truck(-0.1f);
+			break;
+			
+		case OF_KEY_UP:
+			camera.dolly(0.1f);
+			break;
+			
+		case OF_KEY_DOWN:
+			camera.dolly(-0.1f);
+			break;
+	}
 }
