@@ -9,68 +9,63 @@
 
 #include "wdgSlider.h"
 
+//--------------------------------------------
+
 wdgSlider::wdgSlider(string caption,
 							  float &myValue,
 							  float min, float max,
 							  float stepSize,
-							  string units,
-							  bool readOnly) :
+							  string units) :
 wdgBase(caption),
 _value(&myValue),
-_nValues(1)
-{
+_nValues(1) {
 	_min = min;
 	_max = max;
 	_stepSize = stepSize;
 	_units = units;
-	_hasNewValue = false;
-	_readOnly = readOnly;
 	
 	_height = 15 + 10 * _nValues;
 }
+
+//--------------------------------------------
 
 wdgSlider::wdgSlider(string caption,
 					 ofVec2f &myValue,
 					 float min, float max,
 					 float stepSize,
-					 string units,
-					 bool readOnly) :
+					 string units) :
 wdgBase(caption),
 _value(&myValue.x),
-_nValues(2)
-{
+_nValues(2) {
 	_min = min;
 	_max = max;
 	_stepSize = stepSize;
 	_units = units;
-	_hasNewValue = false;
-	_readOnly = readOnly;
 	
 	_height = 15 + 10 * _nValues;
 }
+
+//--------------------------------------------
 
 wdgSlider::wdgSlider(string caption,
 					 ofVec3f &myValue,
 					 float min, float max,
 					 float stepSize,
-					 string units,
-					 bool readOnly) :
+					 string units) :
 wdgBase(caption),
 _value(&myValue.x),
-_nValues(3)
-{
+_nValues(3) {
 	_min = min;
 	_max = max;
 	_stepSize = stepSize;
 	_units = units;
-	_hasNewValue = false;
-	_readOnly = readOnly;
 	
 	_height = 15 + 10 * _nValues;
 }
 
-void wdgSlider::draw()
-{
+//--------------------------------------------
+
+void wdgSlider::draw() {
 	//find rounded value(s)
 	float *valRounded = new float[_nValues];
 	
@@ -91,54 +86,57 @@ void wdgSlider::draw()
 	measurement += " " + _units;
 	
 	ofPushStyle();
-	ofDrawBitmapString(caption + ":", _x, _y+10);
-	ofDrawBitmapString(measurement, _x+_width - measurement.length()*8, _y+10);
-	
-	ofNoFill();
-	if (!_readOnly)
+	if (enabled)
 		ofSetColor(255, 255, 255);
 	else
 		ofSetColor(100, 100, 100);
 	
-	//draw outline
-	ofSetLineWidth(2);
-	ofRect(_x,_y+15,_width,10 * _nValues);
+	ofDrawBitmapString(caption + ":", _x, _y+10);
+	ofDrawBitmapString(measurement, _x+_width - measurement.length()*8, _y+10);
 	
 	//draw fill(s)
+	ofPushStyle();
 	ofFill();
-	for (int i=0; i<_nValues; i++)
+	for (int i=0; i<_nValues; i++) {
+		if (_iSelected == i && enabled)
+			ofSetColor(255,255,255);
+		else
+			ofSetColor(100,100,100);
 		ofRect(_x,_y+15 + i*10,
 				ofMap(_value[i], _min, _max, 0, _width, true),
 				10);
+	}
+	ofPopStyle();
+	
+	//draw outline
+	ofNoFill();
+	ofSetLineWidth(2);
+	ofRect(_x,_y+15,_width,10 * _nValues);
+	
 	ofPopStyle();
 	
 	//delete arrays
 	delete[] valRounded;
 }
 
-void wdgSlider::mousePressed(int x, int y, int button)
-{	
-	_iSelected = (y - 15 - _y) / 10;
+//--------------------------------------------
+
+void wdgSlider::mousePressed(float x, float y, int button) {	
 	
-	if (_iSelected < 0 || _iSelected >= _nValues)
-	{
-		_iSelected = -1;
-		return;
-	}
-	
+	mouseMoved(x, y);
     mouseDown(x, y);
     wdgBase::mousePressed(x, y, button);
 }
 
-void wdgSlider::mouseDragged(int x, int y, int dx, int dy, int button)
-{
+//--------------------------------------------
+
+void wdgSlider::mouseDragged(float x, float y, float dx, float dy, int button) {
     mouseDown(x, y);
 }
 
-void wdgSlider::mouseDown(int x, int y)
-{
-	if (_readOnly)
-		return;
+//--------------------------------------------
+
+void wdgSlider::mouseDown(float x, float y) {
 	
 	const int &i = _iSelected;
 	
@@ -153,10 +151,14 @@ void wdgSlider::mouseDown(int x, int y)
 	_hasNewValue = true;
 }
 
-bool wdgSlider::isValueNew()
-{
-	bool temp = _hasNewValue;
-	_hasNewValue = false;
+//--------------------------------------------
+
+void wdgSlider::mouseMoved(float x, float y) {	
+	_iSelected = (y - 15 - _y) / 10;
 	
-	return temp;
+	if (_iSelected < 0 || _iSelected >= _nValues)
+	{
+		_iSelected = -1;
+		return;
+	}
 }

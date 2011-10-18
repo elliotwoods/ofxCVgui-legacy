@@ -18,15 +18,16 @@ public:
 	void				push(scrBase *addScreen);
 	void				push(scrBase &addScreen);
 	
-	virtual int			findScreen(int x, int y) { return -1; };
+	virtual int			findScreen(float x, float y) { return -1; };
 	
-	void				mouseMoved(int x, int y);
-	virtual void		mousePressed(int x, int y, int button);
-	void				mouseReleased(int x, int y, int button);
-	void				mouseDragged(int x, int y, int dx, int dy, int button);
+	void				mouseMoved(float x, float y);
+	virtual void		mousePressed(float x, float y, int button);
+	void				mouseReleased(float x, float y, int button);
+	void				mouseDragged(float x, float y, float dx, float dy, int button);
+	void				keyPressed(int key);
 	
-	bool				hitMaximise(int x, int y);
-	void				hitMaximise(int x, int y, bool isMaximised);
+	bool				hitMaximise(float x, float y);
+	void				hitMaximise(float x, float y, bool isMaximised);
 	vector<scrBase*>	screens;
 	
 	scrBase&			operator[](const int i);

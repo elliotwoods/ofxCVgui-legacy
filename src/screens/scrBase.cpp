@@ -11,80 +11,61 @@
 #include "ofxCVgui.h"
 
 scrBase::scrBase(string _caption) :
-isFullscreen(_isFullscreen)
-{
-	//_btnMaximise = new btnBase(button_toggle, *_assetButtonPlus, *_assetButtonPlus_over);
-	//_vecInterfaceButtons.push_back(_btnMaximise);
-//	ofAddListener(_btnMaximise->buttonHit, this, &scrBase::hitMaximise);
+isFullscreen(_isFullscreen) {
 	_isFullscreen = false;
 	
-	_isCursorAttached = false;
+	_isMouseAttached = false;
 	
 	caption = _caption;
 	
 	_hasChrome = true;
 	enabled = true;
 	_lock = 0;
-
 }
 
-scrBase::~scrBase()
-{
-	for (int iButton=0; iButton<_vecInterfaceButtons.size(); iButton++) {
-		delete _vecInterfaceButtons.at(iButton);
-	}
+scrBase::~scrBase() {
 	
-	_vecInterfaceButtons.clear();
 }
 
-bool scrBase::isHit(int x, int y)
-{
-	return _bounds.inside(x, y);
+bool scrBase::isHit(float x, float y) {
+	return getLiveBounds().inside(x, y);
 }
 
-void scrBase::mousePressed(int x, int y, int button)
-{
-    _isCursorAttached = true;
-    
-	ofRectangle b = getLiveBounds();
-    ofPoint mouseXY = ofPoint((float(x)-b.x)/b.width, (float(y)-b.y)/b.height);
-    ofNotifyEvent(evtCursorPressed, mouseXY, this);
+void scrBase::mousePressed(float x, float y, int button) {
+    _isMouseAttached = true;
+	ofVec2f m = normaliseMouse(x,y);
+    ofNotifyEvent(evtMousePressed, m, this);
 }
 
-void scrBase::mouseMoved(int x, int y)
-{
-    ofPoint mouseXY = ofPoint(x,y);
-    ofNotifyEvent(evtCursorMove, mouseXY, this);
+void scrBase::mouseMoved(float x, float y) {
+	ofVec2f m = normaliseMouse(x,y);
+    ofNotifyEvent(evtMouseMoved, m, this);
 }
 
-void scrBase::mouseDragged(int x, int y, int dx, int dy, int button)
-{
-    ofPoint mouseXY = ofPoint(x,y);
-    ofNotifyEvent(evtCursorPressed, mouseXY, this);
+void scrBase::mouseDragged(float x, float y, float dx, float dy, int button) {
+	ofVec2f m = normaliseMouse(x,y);
+    ofNotifyEvent(evtMousePressed, m, this);
 }
 
-bool scrBase::transformMouse(float mouseX, float mouseY, float &screenX, float &screenY)
-// transforms the mouse into screen coords
-// returns 'true' if mouse is inside this screen
-{
+void scrBase::transformMouse(float mouseX, float mouseY, float &screenX, float &screenY) {
     ofRectangle liveBounds = getLiveBounds();
     
 	screenX = (mouseX - float(liveBounds.x)) / liveBounds.width;
 	screenY = (mouseY - float(liveBounds.y)) / liveBounds.height;
-	
-	if (screenX >= 0 && screenX <= 1)
-		if (screenY >= 0 && screenY <= 1)
-			return true;
-	
-	return false;
+}
+
+ofVec2f scrBase::normaliseMouse(float x, float y) {
+	ofRectangle b = getLiveBounds();
+    return ofVec2f((x-b.x) / b.width,
+				   (y-b.y) / b.height);
+
 }
 
 void scrBase::setLock(ofMutex &m) {
 	_lock = &m;
 }
 
-void scrBase::draw()
-{
+void scrBase::draw() {
 	if (enabled) {
 		
 		if (_lock != 0)
@@ -104,8 +85,7 @@ void scrBase::draw()
 		drawChrome();
 }
 
-void scrBase::drawChrome()
-{
+void scrBase::drawChrome() {
 	int x, y, width, height;
 	getLiveBounds(x, y, width, height);
 	
@@ -132,19 +112,7 @@ void scrBase::drawChrome()
 	
 	ofPopStyle();
 	
-	
-	//
-	// BUTTONS
-	//
-	int button_x, button_y;
-	button_y = y+height-GUI_INTERFACE_BUTTON_SIZE;
-	
-	for (int iButton = 0; iButton < _vecInterfaceButtons.size(); iButton++)
-	{
-		button_x = x+width-(GUI_INTERFACE_BUTTON_SIZE*(iButton+1));
-		_vecInterfaceButtons.at(iButton)->draw(button_wait, button_x, button_y);
-	}
-	
+		
 	//
 	//CAPTION
 	//
@@ -167,26 +135,22 @@ void scrBase::drawChrome()
 }
 
 //---------------------------------------------------------------------------------
-bool scrBase::hitMaximise(int x, int y)
-{
+bool scrBase::hitMaximise(float x, float y) {
 	_isFullscreen = !_isFullscreen;
 	return _isFullscreen;
 }
 
-void scrBase::hitMaximise(int x, int y, bool input)
-{
+void scrBase::hitMaximise(float x, float y, bool input) {
 	_isFullscreen = input;
 }
 
-void scrBase::setBounds(ofRectangle &bounds)
-{
+void scrBase::setBounds(ofRectangle &bounds) {
     _bounds = bounds;
 	
 	doResize();
 }
 
-void scrBase::getLiveBounds(int &x, int &y, int &w, int &h)
-{
+void scrBase::getLiveBounds(int &x, int &y, int &w, int &h) {
     ofRectangle liveBounds = getLiveBounds();
     
     x = liveBounds.x;
@@ -195,8 +159,7 @@ void scrBase::getLiveBounds(int &x, int &y, int &w, int &h)
     h = liveBounds.height;
 }
 
-ofRectangle scrBase::getLiveBounds()
-{
+ofRectangle scrBase::getLiveBounds() {
     ofRectangle liveBounds;
     
     if (_isFullscreen)
@@ -212,23 +175,10 @@ ofRectangle scrBase::getLiveBounds()
 }
 
 //---------------------------------------------------------------------------------
-
-void scrBase::moveCursor(float x, float y)
-{
-	
-	_ptCursorPosition.x = x;
-	_ptCursorPosition.y = y;
-
-	ofNotifyEvent(evtCursorMove, _ptCursorPosition, this);
-}
-
-//---------------------------------------------------------------------------------
-void scrBase::updateInterface()
-{
+void scrBase::updateInterface() {
 	_lastLocalInterfaceUpdate = ofGetElapsedTimef();
 }
 
-bool scrBase::isUserActive()
-{
+bool scrBase::isUserActive() {
 	return (_lastLocalInterfaceUpdate + GUI_INTERFACE_DISPLAY_TIME) > ofGetElapsedTimef();
 }

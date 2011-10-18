@@ -15,7 +15,7 @@ public:
 	scrGroupGrid(string caption="");
 	void		drawContent();
 	
-	int			findScreen(int x, int y);
+	int			findScreen(float x, float y);
 	
 	void		setGridWidth(int gridWidth);
 	void		setGridHeight(int gridHeight);

@@ -22,8 +22,9 @@ wdgBase(caption)
 	
 	_wasBang = 0;
 	
-	enabled = true;
 	_hasDrawn = true;
+	
+	_hotkey = 0;
 }
 
 wdgButton::wdgButton(string caption,
@@ -38,8 +39,9 @@ wdgBase(caption)
 
 	_wasBang = 0;
 	
-	enabled = true;
 	_hasDrawn = true;
+	
+	_hotkey = 0;
 }
 
 void wdgButton::draw()
@@ -83,7 +85,32 @@ void wdgButton::draw()
 	if (!enabled)
 		ofSetColor(100, 100, 100);
 	
-	ofDrawBitmapString(caption, _x+_width/2-4*caption.length(),
+	string toWrite;
+	//perhaps this could be put in a dictionary somewhere
+	if (_hotkey!=0) {
+		switch (_hotkey) {
+			case ' ':
+				toWrite = " [SPACE]";
+				break;
+			case OF_KEY_LEFT:
+				toWrite = " [LEFT]";
+				break;
+			case OF_KEY_RIGHT:
+				toWrite = " [RIGHT]";
+				break;
+			case OF_KEY_UP:
+				toWrite = " [UP]";
+				break;
+			case OF_KEY_DOWN:
+				toWrite = " [DOWN]";
+				break;
+			default:
+				toWrite = (string("[") + char(_hotkey)) + "]";
+		}
+	}
+	
+	toWrite = caption + toWrite;
+	ofDrawBitmapString(toWrite, _x+_width/2-4*caption.length(),
 					   _y+_height/2+5);
 	ofPopStyle();
 	
@@ -93,19 +120,27 @@ void wdgButton::draw()
 	_hasDrawn = true;
 
 }
-void wdgButton::mousePressed(int x, int y, int button)
-{
-	if (enabled)
-		if (_isBang)
-			_valueBang = true;
-		else
-			*_valueToggle = !*_valueToggle;
+void wdgButton::mousePressed(float x, float y, int button) {
+	if (_isBang)
+		_valueBang = true;
+	else
+		*_valueToggle = !*_valueToggle;
+	
+	_hasNewValue = true;
 	
 	_hasDrawn=false;
 }
 
-bool wdgButton::getBang()
-{
+void wdgButton::keyPressed(int key) {
+	if (key == _hotkey)
+		mousePressed(0,0,0);
+}
+
+void wdgButton::setHotKey(const char c) {
+	_hotkey = c;
+}
+
+bool wdgButton::getBang() {
 	if (_isBang && _hasDrawn)
 	{
 		if (_valueBang)
@@ -122,8 +157,7 @@ bool wdgButton::getBang()
 		
 }
 
-void wdgButton::setBang()
-{
+void wdgButton::setBang() {
     if (_isBang)
         _valueBang = true;
 }

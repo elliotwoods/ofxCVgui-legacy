@@ -36,7 +36,7 @@ void scrGroupBase::push(scrBase &addScreen)
 
 //////////////////////////////////////////////////////
 
-void scrGroupBase::mouseMoved(int x, int y)
+void scrGroupBase::mouseMoved(float x, float y)
 {
 	int iScreen = findScreen(x,y);
 	
@@ -46,7 +46,7 @@ void scrGroupBase::mouseMoved(int x, int y)
 	screens[iScreen]->mouseMoved(x,y);
 }
 
-void scrGroupBase::mousePressed(int x, int y, int button)
+void scrGroupBase::mousePressed(float x, float y, int button)
 {
 	int iScreen = findScreen(x,y);
 	
@@ -58,29 +58,34 @@ void scrGroupBase::mousePressed(int x, int y, int button)
 	scrBase::mousePressed(x, y, button);
 }
 
-void scrGroupBase::mouseReleased(int x, int y, int button)
+void scrGroupBase::mouseReleased(float x, float y, int button)
 {
 	FOREACH_SCREEN
-		if (screens[iScreen]->getIsCursorAttached())
+		if (screens[iScreen]->getIsMouseAttached())
 			screens[iScreen]->mouseReleased(x,y,button);	
 	
 	scrBase::mouseReleased(x, y, button);
 }
 
-void scrGroupBase::mouseDragged(int x, int y, int dx, int dy, int button)
+void scrGroupBase::mouseDragged(float x, float y, float dx, float dy, int button)
 {
 	FOREACH_SCREEN
 		if (button==0)
 		{
-			if (screens[iScreen]->getIsCursorAttached())
+			if (screens[iScreen]->getIsMouseAttached())
 				screens[iScreen]->mouseDragged(x,y,dx,dy,0);
 		} else
 			screens[iScreen]->mouseDragged(x,y,dx,dy,1);
 }
 
+void scrGroupBase::keyPressed(int key) {
+	FOREACH_SCREEN
+		screens[iScreen]->keyPressed(key);
+}
+
 //////////////////////////////////////////////////////
 
-bool scrGroupBase::hitMaximise(int x, int y)
+bool scrGroupBase::hitMaximise(float x, float y)
 {
 	//this function:
 	//will maximise / unmaximise one of its children if anything is hit
@@ -112,7 +117,7 @@ bool scrGroupBase::hitMaximise(int x, int y)
 	}
 }
 
-void scrGroupBase::hitMaximise(int x, int y, bool isMaximised)
+void scrGroupBase::hitMaximise(float x, float y, bool isMaximised)
 {
 	if (_isFullscreen==isMaximised)
 	{

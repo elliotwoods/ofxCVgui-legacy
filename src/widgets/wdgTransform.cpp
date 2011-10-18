@@ -20,12 +20,12 @@ void wdgTransform::draw()
 	
 }
 
-void wdgTransform::mousePressed(int x, int y, int button)
+void wdgTransform::mousePressed(float x, float y, int button)
 {
 	
 }
 
-void wdgTransform::mouseDragged(int x, int y, int dx, int dy, int button)
+void wdgTransform::mouseDragged(float x, float y, float dx, float dy, int button)
 {
 	
 }

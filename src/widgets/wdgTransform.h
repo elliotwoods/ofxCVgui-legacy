@@ -14,8 +14,8 @@ class wdgTransform : public wdgBase
 	wdgTransform(ofMatrix4x4 &matrix, ofCamera &camera, string caption = "Transform");
 	
 	void		draw();
-	void		mousePressed(int x, int y, int button);
-	void		mouseDragged(int x, int y, int dx, int dy, int button);    
+	void		mousePressed(float x, float y, int button);
+	void		mouseDragged(float x, float y, float dx, float dy, int button);    
 	
 	ofMatrix4x4	&_matrix;
 };

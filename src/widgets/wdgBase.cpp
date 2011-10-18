@@ -15,9 +15,11 @@ _isMouseAttached(false)
 {
 	caption = _caption;
 	_height = 30;
+	_hasNewValue = false;
+	enabled = true;
 }
 
-void wdgBase::setBounds(int x, int y, int width)
+void wdgBase::setBounds(float x, float y, int width)
 {
 	_x = x;
 	_y = y;
@@ -25,17 +27,17 @@ void wdgBase::setBounds(int x, int y, int width)
 	_width = width;
 }
 
-void wdgBase::mousePressed(int x, int y, int button)
+void wdgBase::mousePressed(float x, float y, int button)
 {
     _isMouseAttached = true;
 }
 
-void wdgBase::mouseReleased(int x, int y, int button)
+void wdgBase::mouseReleased(float x, float y, int button)
 {
     _isMouseAttached = false;
 }
 
-bool wdgBase::isHit(int x, int y)
+bool wdgBase::isHit(float x, float y)
 {
 	return (x>=_x && y>=_y &&
 			x<=_x+_width && y<=_y+_height);
@@ -49,4 +51,12 @@ bool wdgBase::getIsMouseAttached()
 void wdgBase::setHeight(int newHeight)
 {
 	_height = newHeight;
+}
+
+bool wdgBase::isValueNew()
+{
+	bool temp = _hasNewValue;
+	_hasNewValue = false;
+	
+	return temp;
 }

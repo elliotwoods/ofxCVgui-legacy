@@ -15,9 +15,11 @@ class scrViewport : public scrBase {
 public:
 	scrViewport(string _caption = "");
 	
-    ofEvent<ofRectangle>    evtDraw;
+    ofEvent<ofRectangle>    evtDrawInsideViewport;
     
 protected:
 	void			drawContent();
+	
+	virtual void	drawInsideViewport() { };
 	
 };

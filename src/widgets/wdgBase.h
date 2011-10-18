@@ -17,24 +17,30 @@ public:
 
 	virtual void	draw() = 0;
 	
-	virtual void	mousePressed(int x, int y, int button) ;
-    virtual void	mouseDragged(int x, int y, int dx, int dy, int button) { };
-    virtual void	mouseReleased(int x, int y, int button);
-    virtual void	mouseMoved(int x, int y) { };
+	virtual void	mousePressed(float x, float y, int button) ;
+    virtual void	mouseDragged(float x, float y, float dx, float dy, int button) { };
+    virtual void	mouseReleased(float x, float y, int button);
+    virtual void	mouseMoved(float x, float y) { };
+	virtual void	keyPressed(int key) { };
     
-	bool			isHit(int x, int y);
+	bool			isHit(float x, float y);
     bool            getIsMouseAttached();
 	
-	void			setBounds(int x, int y, int width);
+	void			setBounds(float x, float y, int width);
 	void			setHeight(int newHeight);
+	
+	bool			isValueNew();
 	
 	const int		&height;
 	const int		&y;
 	string			caption;
+	bool			enabled;
 	
 protected:
 	int				_x, _y;
 	int				_width, _height;
     
     bool            _isMouseAttached;
+	
+	bool			_hasNewValue;
 };

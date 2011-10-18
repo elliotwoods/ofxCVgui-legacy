@@ -17,9 +17,9 @@ public:
 	scrGroupTabbed(string caption, int _tabRegionHeight=16);
 	void		drawContent();
 	
-	void		mousePressed(int x, int y, int button);
+	void		mousePressed(float x, float y, int button);
 	
-	int			findScreen(int x, int y);
+	int			findScreen(float x, float y);
 	
 protected:
 	int			tabRegionHeight;

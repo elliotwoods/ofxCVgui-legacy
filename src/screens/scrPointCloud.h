@@ -18,7 +18,7 @@ public:
 	scrPointCloud(string caption);
 	~scrPointCloud();
 	
-	void			mouseDragged(int x, int y, int dx, int dy, int button);
+	void			mouseDragged(float x, float y, float dx, float dy, int button);
 	int				pointSize;
 
     void            clear();

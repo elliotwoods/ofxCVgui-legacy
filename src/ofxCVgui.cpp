@@ -133,7 +133,7 @@ void ofxCVgui::mouseReleased(ofMouseEventArgs & args)
         return;
     }
     
-	if (mainScreen->getIsCursorAttached())
+	if (mainScreen->getIsMouseAttached())
 		mainScreen->mouseReleased(args.x, args.y, args.button);
 	
 	updateMouse(args.x, args.y);
@@ -152,7 +152,7 @@ void ofxCVgui::mouseDragged(ofMouseEventArgs & args)
 	
 	if (args.button==0)
 	{
-		if (mainScreen->getIsCursorAttached())
+		if (mainScreen->getIsMouseAttached())
 			mainScreen->mouseDragged(args.x, args.y, dx, dy, 0);
 	} else {
 		mainScreen->mouseDragged(args.x, args.y, dx, dy, 1);
@@ -161,7 +161,7 @@ void ofxCVgui::mouseDragged(ofMouseEventArgs & args)
 	updateMouse(args.x, args.y);
 }
 
-void ofxCVgui::updateMouse(int x, int y)
+void ofxCVgui::updateMouse(float x, float y)
 {
 	interfaceNudge();
     
@@ -210,6 +210,8 @@ void ofxCVgui::keyPressed(ofKeyEventArgs & args)
 {
     if (args.key == 'f')
         doFullscreen();
+	
+	mainScreen->keyPressed(args.key);
 }
 
 void ofxCVgui::windowResized(ofResizeEventArgs & args)

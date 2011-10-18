@@ -17,10 +17,11 @@ class scrWidgets : public scrBase
 public:
 	scrWidgets(string _caption = "Controls");
 	
-	void				mousePressed(int x, int y, int button);
-    void                mouseReleased(int x, int y, int button);
-    void                mouseDragged(int x, int y, int dx, int dy, int button);
-    void                mouseMoved(int x, int y);
+	void				mousePressed(float x, float y, int button);
+    void                mouseReleased(float x, float y, int button);
+    void                mouseDragged(float x, float y, float dx, float dy, int button);
+    void                mouseMoved(float x, float y);
+	void				keyPressed(int key);
 	
 	void				push(wdgBase *widget);
 	void				push(wdgBase &widget);

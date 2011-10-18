@@ -22,7 +22,7 @@ void btnBase::mouseReleased()
 	ofNotifyEvent(buttonHit, intNull, this);
 }
 
-void btnBase::draw(enumGUIButtonState state, int x, int y)
+void btnBase::draw(enumGUIButtonState state, float x, float y)
 {
 	
 	switch (state) {

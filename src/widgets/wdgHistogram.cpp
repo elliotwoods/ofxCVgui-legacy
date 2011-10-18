@@ -189,20 +189,20 @@ void wdgHistogram<ChannelType>::setSelection(ChannelType *channel)
 }
 
 template<typename ChannelType>
-void wdgHistogram<ChannelType>::mousePressed(int x, int y, int button)
+void wdgHistogram<ChannelType>::mousePressed(float x, float y, int button)
 {
     mouseDown(x, y);
     wdgBase::mousePressed(x,y,button);
 }
 
 template<typename ChannelType>
-void wdgHistogram<ChannelType>::mouseDragged(int x, int y, int dx, int dy, int button)
+void wdgHistogram<ChannelType>::mouseDragged(float x, float y, float dx, float dy, int button)
 {
     mouseDown(x, y);
 }
 
 template<typename ChannelType>
-void wdgHistogram<ChannelType>::mouseDown(int x, int y)
+void wdgHistogram<ChannelType>::mouseDown(float x, float y)
 {
     float newSelection = float(x-_x)/float(_width) * float(_binCount);
     

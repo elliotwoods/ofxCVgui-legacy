@@ -81,7 +81,7 @@ void scrGroupTabbed::drawContent()
 
 ////////////////////////////////////////////////////////////
 
-void scrGroupTabbed::mousePressed(int x, int y, int button)
+void scrGroupTabbed::mousePressed(float x, float y, int button)
 {
 	//check to see whether our mouse is
 	//hitting the tab region
@@ -98,7 +98,7 @@ void scrGroupTabbed::mousePressed(int x, int y, int button)
 
 ////////////////////////////////////////////////////////////
 
-int scrGroupTabbed::findScreen(int x, int y)
+int scrGroupTabbed::findScreen(float x, float y)
 {
 	if (_isFullscreen)
 		return iScreenMaximised;

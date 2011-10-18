@@ -56,7 +56,7 @@ public:
 	void					mousePressed(ofMouseEventArgs & args);
 	void					mouseReleased(ofMouseEventArgs & args);
 	void					mouseDragged(ofMouseEventArgs & args);
-	void					updateMouse(int x, int y);
+	void					updateMouse(float x, float y);
 	
     void                    keyPressed(ofKeyEventArgs & args);
     
@@ -81,7 +81,7 @@ private:
 	bool					isMaximised;
     bool                    isInitialised;
     
-	int						_mousex, _mousey;
+	float					_mousex, _mousey;
 	
 	bool					_drawOnEvent;
 	bool					_resizeOnEvent;

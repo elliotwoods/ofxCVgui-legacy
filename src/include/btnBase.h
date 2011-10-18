@@ -17,7 +17,7 @@ public:
 	
 	void	mouseReleased();
 	
-	void	draw(enumGUIButtonState state, int x, int y);
+	void	draw(enumGUIButtonState state, float x, float y);
 	
 	ofEvent<int> buttonHit;
 	

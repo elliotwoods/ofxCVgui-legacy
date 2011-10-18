@@ -117,7 +117,7 @@ void scrPointCloud::end()
     ofDrawBitmapString(ofToString(_nPoints), x + 10, y + 30);
 }
 
-void scrPointCloud::mouseDragged(int x, int y, int dx, int dy, int button)
+void scrPointCloud::mouseDragged(float x, float y, float dx, float dy, int button)
 {
 	int boundsx, boundsy, boundswidth, boundsheight;
 	getLiveBounds(boundsx, boundsy, boundswidth, boundsheight);

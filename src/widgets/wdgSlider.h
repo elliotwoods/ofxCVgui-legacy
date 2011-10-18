@@ -17,38 +17,31 @@ public:
 			  float &myValue,
 			  float min, float max,
 			  float stepSize=1,
-			  string units="",
-			  bool readOnly=false);
+			  string units="");
 
 	wdgSlider(string caption,
 			  ofVec2f &myValue,
 			  float min, float max,
 			  float stepSize=1,
-			  string units="",
-			  bool readOnly=false);
+			  string units="");
 	
 	wdgSlider(string caption,
 			  ofVec3f &myValue,
 			  float min, float max,
 			  float stepSize=1,
-			  string units="",
-			  bool readOnly=false);
+			  string units="");
 	
 	void		draw();
-	void		mousePressed(int x, int y, int button);
-	void		mouseDragged(int x, int y, int dx, int dy, int button);    
-	
-	bool		isValueNew();
+	void		mousePressed(float x, float y, int button);
+	void		mouseDragged(float x, float y, float dx, float dy, int button);
+	void		mouseMoved(float x, float y);
 	
 protected:
-    void        mouseDown(int x, int y);
+    void        mouseDown(float x, float y);
 	
 	
 	float		*_value;
 	int const	_nValues;
-	bool		_hasNewValue;
-	
-	bool		_readOnly;
 	
 	float		_min, _max;
 	float		_stepSize;

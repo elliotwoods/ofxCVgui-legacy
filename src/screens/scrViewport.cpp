@@ -17,9 +17,6 @@ scrBase(_caption)
 
 void scrViewport::drawContent()
 {
-    if (evtDraw.empty())
-        return;
-
     ofRectangle liveBounds = getLiveBounds();
     
     //save old view
@@ -47,9 +44,10 @@ void scrViewport::drawContent()
     };
     glMultMatrixf(orthoMatrix);
 	
-    //draw event   
-    ofNotifyEvent(evtDraw, liveBounds, this);
-    
+    //draw event
+    ofNotifyEvent(evtDrawInsideViewport, liveBounds, this);
+    drawInsideViewport();
+	
     //get out of view
     ofPopView();
 }

@@ -37,7 +37,7 @@ void scrHistograms::addHistogram(Histogram &histogram)
 	_vecHistograms.push_back(&histogram);
 }
 
-void scrHistograms::mousePressed(int x, int y, int button)
+void scrHistograms::mousePressed(float x, float y, int button)
 {
 	scrBase::mousePressed(x, y, button);
 	

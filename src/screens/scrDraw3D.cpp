@@ -26,7 +26,10 @@ void scrDraw3D::drawContent()
 	glEnable(GL_DEPTH_TEST);
 	_node.draw();
 
+	_node.transformGL();
 	ofNotifyEvent(evtDraw3D, _node);
+	_node.restoreTransformGL();
+	
 	glDisable(GL_DEPTH_TEST);
 	
 	camera.end();
@@ -35,19 +38,23 @@ void scrDraw3D::drawContent()
 void scrDraw3D::keyPressed(ofKeyEventArgs &args) {
 	switch(args.key) {
 		case OF_KEY_RIGHT:
-			camera.truck(0.1f);
+			_node.truck(0.1f);
 			break;
 			
 		case OF_KEY_LEFT:
-			camera.truck(-0.1f);
+			_node.truck(-0.1f);
 			break;
 			
 		case OF_KEY_UP:
-			camera.dolly(0.1f);
+			_node.dolly(0.1f);
 			break;
 			
 		case OF_KEY_DOWN:
-			camera.dolly(-0.1f);
+			_node.dolly(-0.1f);
 			break;
 	}
+}
+
+ofNode& scrDraw3D::getNodeReference() {
+	return _node;
 }

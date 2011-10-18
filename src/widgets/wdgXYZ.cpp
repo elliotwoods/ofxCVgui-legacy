@@ -59,7 +59,7 @@ void wdgXYZ::draw()
 	ofPopStyle();
 }
 
-void wdgXYZ::mousePressed(int x, int y, int button)
+void wdgXYZ::mousePressed(float x, float y, int button)
 {
 	if (_readOnly)
 		return;
@@ -67,7 +67,7 @@ void wdgXYZ::mousePressed(int x, int y, int button)
     x -=3;
     
     int iDimension = x / 75;
-    int xInDimension = x % 75;
+    int xInDimension = int(x) % 75;
     
     if (iDimension > 2)
         return;

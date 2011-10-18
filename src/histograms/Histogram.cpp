@@ -132,7 +132,7 @@ void Histogram::updateBar(int iPixelX, int iClass, float maxheight)
 	}
 }
 
-void Histogram::draw(int x, int y, int width, int height)
+void Histogram::draw(float x, float y, float width, float height)
 {
 	if (!_isTextureUpToDate)
 		update();

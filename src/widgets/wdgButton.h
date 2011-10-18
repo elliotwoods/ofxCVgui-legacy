@@ -26,12 +26,13 @@ public:
 			  int inHeight = 30);
 	
 	void		draw();
-	void		mousePressed(int x, int y, int button);
+	void		mousePressed(float x, float y, int button);
+	void		keyPressed(int key);
 	
+	void		setHotKey(const char c);
 	bool		getBang();
     void        setBang();
-
-	bool		enabled;
+	
 protected:
 	bool		_isBang;
 	bool		*_valueToggle;
@@ -40,5 +41,7 @@ protected:
 	int			_wasBang;
 	bool		_hasDrawn;	//this is so we draw the mousedown state
 							//before the result of the bang
+	
+	int			_hotkey; //stored as int to stop 'overflow in implicit const constant conversion'
 	
 };

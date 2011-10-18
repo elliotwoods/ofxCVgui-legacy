@@ -27,39 +27,39 @@ public:
 	
 	void					draw(); // please override the private one below
 	
-	bool					isHit(int x, int y);
+	bool					isHit(float x, float y);
 	
-	virtual void			mousePressed(int x, int y, int button);
-	virtual void			mouseMoved(int x, int y);
-	virtual void			mouseReleased(int x, int y, int button) {_isCursorAttached=false; };
-	virtual void			mouseDragged(int x, int y, int dx, int dy, int button);
+	virtual void			mousePressed(float x, float y, int button);
+	virtual void			mouseMoved(float x, float y);
+	virtual void			mouseReleased(float x, float y, int button) {_isMouseAttached=false; };
+	virtual void			mouseDragged(float x, float y, float dx, float dy, int button);
 	
-	virtual bool			hitMaximise(int x, int y);
-	virtual void			hitMaximise(int x, int y, bool input);
+	virtual void			keyPressed(int key) { };
+	
+	virtual bool			hitMaximise(float x, float y);
+	virtual void			hitMaximise(float x, float y, bool input);
 	const bool				&isFullscreen;
 	
 	void					setBounds(ofRectangle &bounds);
     ofRectangle				getLiveBounds(); //also considers fullscreen
 	virtual void			doResize() { };
 	
-	void					getStatus(string &strStatus) { };
-	
-	void					moveCursor(float x, float y);
-	
 	void					updateInterface();
 	bool					isUserActive();
-    
-    bool                    getIsCursorAttached() const {
-        return _isCursorAttached;
-    };
 
-    bool					transformMouse(float mouseX, float mouseY, float &screenX, float &screenY);
+	bool                    getIsMouseAttached() const {
+        return _isMouseAttached;
+    };
+	
+	///transform mouse coords from computer screen to local screen coordinates
+    void					transformMouse(float mouseX, float mouseY, float &screenX, float &screenY);
+	ofVec2f					normaliseMouse(float x, float y);
     
 	void					setLock(ofMutex& m);
 	
 	ofEvent<ofRectangle>	evtDraw;
-	ofEvent<ofPoint>		evtCursorMove;
-	ofEvent<ofPoint>		evtCursorPressed;
+	ofEvent<ofVec2f>		evtMouseMoved;
+	ofEvent<ofVec2f>		evtMousePressed;
 	
 	string					caption;
 	bool					enabled;
@@ -74,21 +74,15 @@ protected:
 	ofRectangle             _bounds;
 	bool					_isFullscreen;
 	
-	ofPoint					_ptCursorPosition;
-    bool                    _isCursorAttached;
-	
-	string					_strStatus;
+    bool                    _isMouseAttached;
 
-	std::vector<btnBase*>	_vecInterfaceButtons;
-	//btnBase				*_btnMaximise;
-	
 	float					_lastLocalInterfaceUpdate;
 	
 	int						_mousex, _mousey;
 	
 	bool					_hasChrome;
 
-	ofMutex*  		_lock;
+	ofMutex*				_lock;
 
 };
 

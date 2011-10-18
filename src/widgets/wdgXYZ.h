@@ -20,7 +20,7 @@ public:
 			  bool readOnly=false);
     
 	void		draw();
-	void		mousePressed(int x, int y, int button);
+	void		mousePressed(float x, float y, int button);
 	
 	bool		isValueNew();
 	

@@ -16,9 +16,11 @@ public:
 	scrDraw3D(string caption, ofNode& node);
 	
 	void			keyPressed(ofKeyEventArgs & args);
+	ofNode&			getNodeReference();
 	
 	float			pointSize;
 	ofEvent<ofNode>	evtDraw3D; ///< differs from standard event, in that it is triggered after the transforms have been applied
+	
 	
 protected:
 	virtual void	drawContent();

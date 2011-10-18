@@ -22,7 +22,7 @@ class Histogram : public GUIAssets
         void                setSelection(int value);
 	
 		void				update();
-		void				draw(int x, int y, int width, int height);
+		void				draw(float x, float y, float width, float height);
 	
 		void				mouseDown(float x, float y);
 		string				mouseHover(float xX, float xY);
