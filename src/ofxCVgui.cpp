@@ -15,32 +15,48 @@ ofxCVgui::ofxCVgui() {
 	_drawOnEvent = false;
 }
 
-void ofxCVgui::init(scrBase& mainScreen) {
-    isInitialised = true;
-	isMaximised = false;
+//-----------------------------
+void ofxCVgui::init() {
+	scrGroupBase* root = new scrGroupGrid("Root");
+	setRootGroup(root);
+	setMainScreen(root);
+	
+	initBase();
+}
 
+//-----------------------------
+void ofxCVgui::init(scrBase& mainScreen) {
+	setMainScreen(mainScreen);
+	
+	initBase();
+}
+
+//-----------------------------
+void ofxCVgui::initBase() {
+	isInitialised = true;
+	isMaximised = false;
+	
     _bounds.x = 0;
     _bounds.y = 0;
     _bounds.width = ofGetWidth();
     _bounds.height = ofGetHeight();
 	
-	setMainScreen(mainScreen);
-	
 	assetLoad();
     
     ofAddListener(ofEvents.update, this, &ofxCVgui::update);
     ofAddListener(ofEvents.draw, this, &ofxCVgui::draw);
+	
     ofAddListener(ofEvents.mouseMoved, this, &ofxCVgui::mouseMoved);
     ofAddListener(ofEvents.mousePressed, this, &ofxCVgui::mousePressed);
     ofAddListener(ofEvents.mouseReleased, this, &ofxCVgui::mouseReleased);
     ofAddListener(ofEvents.mouseDragged, this, &ofxCVgui::mouseDragged);
-
+	
     ofAddListener(ofEvents.keyPressed, this, &ofxCVgui::keyPressed);
     
     ofAddListener(ofEvents.windowResized, this, &ofxCVgui::windowResized);
-    
 }
 
+//-----------------------------
 bool ofxCVgui::doFullscreen() {
 	if (mainScreen->hitMaximise(_mousex, _mousey))
     {
@@ -52,6 +68,7 @@ bool ofxCVgui::doFullscreen() {
     }
 }
 
+//-----------------------------
 void ofxCVgui::update(ofEventArgs & args)
 {
     if (!isInitialised)
@@ -68,6 +85,7 @@ void ofxCVgui::update(ofEventArgs & args)
 		ofHideCursor();
 }
 
+//-----------------------------
 void ofxCVgui::draw()
 {
 	if (_drawOnEvent)
@@ -75,11 +93,14 @@ void ofxCVgui::draw()
 	else
 		_draw();
 }
+
+//-----------------------------
 void ofxCVgui::draw(ofEventArgs & args)
 {
     draw();
 }
 
+//-----------------------------
 void ofxCVgui::_draw()
 {
 	if (!isInitialised)
@@ -92,11 +113,17 @@ void ofxCVgui::_draw()
 
 }
 
+//-----------------------------
 void ofxCVgui::setMainScreen(scrBase& s) {
 	mainScreen = &s;
 }
 
-//------------------------------------------------------------------------------------------------
+//-----------------------------
+void ofxCVgui::setMainScreen(scrBase* s) {
+	mainScreen = s;
+}
+
+//-----------------------------
 void ofxCVgui::mouseMoved(ofMouseEventArgs & args)
 {
     if (!isInitialised)
@@ -111,6 +138,7 @@ void ofxCVgui::mouseMoved(ofMouseEventArgs & args)
 	updateMouse(args.x, args.y);
 }
 
+//-----------------------------
 void ofxCVgui::mousePressed(ofMouseEventArgs & args)
 {
     if (!isInitialised)
@@ -125,6 +153,7 @@ void ofxCVgui::mousePressed(ofMouseEventArgs & args)
 	updateMouse(args.x, args.y);
 }
 
+//-----------------------------
 void ofxCVgui::mouseReleased(ofMouseEventArgs & args)
 {
     if (!isInitialised)
@@ -139,6 +168,7 @@ void ofxCVgui::mouseReleased(ofMouseEventArgs & args)
 	updateMouse(args.x, args.y);
 }
 
+//-----------------------------
 void ofxCVgui::mouseDragged(ofMouseEventArgs & args)
 {
     if (!isInitialised)
@@ -161,6 +191,7 @@ void ofxCVgui::mouseDragged(ofMouseEventArgs & args)
 	updateMouse(args.x, args.y);
 }
 
+//-----------------------------
 void ofxCVgui::updateMouse(float x, float y)
 {
 	interfaceNudge();
@@ -169,12 +200,14 @@ void ofxCVgui::updateMouse(float x, float y)
 	_mousey = y;
 }
 
+//-----------------------------
 void ofxCVgui::setBounds(ofRectangle &bounds)
 {
     _bounds = bounds;
     mainScreen->setBounds(_bounds);
 }
 
+//-----------------------------
 void ofxCVgui::setDrawOnEvent(bool b)
 {
 	if (b == _drawOnEvent)
@@ -189,6 +222,7 @@ void ofxCVgui::setDrawOnEvent(bool b)
 	_drawOnEvent = b;
 }
 
+//-----------------------------
 void ofxCVgui::setResizeOnEvent(bool b)
 {
 	if (b == _drawOnEvent)
@@ -203,9 +237,7 @@ void ofxCVgui::setResizeOnEvent(bool b)
 	_drawOnEvent = b;
 }
 
-
-//------------------------------------------------------------------------------------------------
-
+//-----------------------------
 void ofxCVgui::keyPressed(ofKeyEventArgs & args)
 {
     if (args.key == 'f')
@@ -214,6 +246,7 @@ void ofxCVgui::keyPressed(ofKeyEventArgs & args)
 	mainScreen->keyPressed(args.key);
 }
 
+//-----------------------------
 void ofxCVgui::windowResized(ofResizeEventArgs & args)
 {
     ofRectangle newBounds = _bounds;

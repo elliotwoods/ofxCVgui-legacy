@@ -13,7 +13,6 @@
 class GUIGlobal
 {
 public:
-	
 	static void				g_userAction();
 	static bool				g_updateIsUserActive();
 	

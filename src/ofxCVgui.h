@@ -7,43 +7,28 @@
  *  Copyright 2010 Kimchi and Chips. All rights reserved.
  *
  */
-//#include "PCconstants.h"
-//#include "PCAssets.h"
 #include "GUIGlobal.h"
 #include "GUIConstants.h"
 #include "GUIAssets.h"
+#include "GUIDesigner.h"
 
 #include "Histogram.h"
 
-#include "scrHistograms.h"
-#include "scrWidgets.h"
-#include "scrFileSelect.h"
-#include "scrPointCloud.h"
-#include "scrVbo.h" //might remove this.
-#include "scrDraw3D.h"
-#include "scrDraw2D.h"
-#include "scrViewport.h"
-
-#include "scrGroupGrid.h"
-#include "scrGroupTabbed.h"
-
-#include "wdgSlider.h"
-#include "wdgCounter.h"
-#include "wdgButton.h"
-#include "wdgXYZ.h"
-#include "wdgColour.h"
-#include "wdgHistogram.h"
-#include "wdgFPS.h"
-#include "wdgTransform.h"
+#include "screens.h"
+#include "widgets.h"
 
 #include "ofMain.h"
 #include "ofEvents.h"
 
-class ofxCVgui : public GUIGlobal, public GUIAssets
+class ofxCVgui : public GUIGlobal, public GUIAssets, public GUIDesigner
 {
 public:
     ofxCVgui();
     
+	///init with a default root screen
+	void					init();
+	
+	///init with root screen passed by user
     void                    init(scrBase& mainScreen);
 	
 	bool					doFullscreen();
@@ -70,10 +55,12 @@ public:
 	void					setResizeOnEvent(bool b);
 	
 	void					setMainScreen(scrBase& s);
-
+	void					setMainScreen(scrBase* s);
 	
 private:
-	void					_draw();
+	void	initBase();
+	void	_draw();
+	
     ofRectangle             _bounds;
     
 	scrBase*				mainScreen;
