@@ -9,16 +9,15 @@
  */
 
 #include "ofMain.h"
-#include "ofxGrabCam.h"
 
 #include "scrBase.h"
+#include "ofxGrabCam.h"
 
 class scrPointCloud : public scrBase {
 	
 public:
 	scrPointCloud(string caption);
 	~scrPointCloud();
-	
 	int				pointSize;
 
     void            clear();
@@ -28,10 +27,6 @@ public:
 	void			setWith(float *positions, float *colours, int nPoints);
 	void			setWith(double *positions, int nPoints);
 	void			keyPressed(int key);
-	
-	static ofPoint	spin;
-	static ofPoint	translate;
-	static float	distance;
     
 protected:
 	virtual void	drawContent();

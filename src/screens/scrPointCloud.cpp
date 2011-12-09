@@ -9,11 +9,6 @@
 
 #include "scrPointCloud.h"
 
-ofPoint scrPointCloud::spin = ofPoint();
-ofPoint scrPointCloud::translate = ofPoint();
-float scrPointCloud::distance = 1;
-
-
 scrPointCloud::scrPointCloud(string caption) :
 scrBase(caption),
 _isSet(false)
@@ -45,9 +40,13 @@ void scrPointCloud::drawContent()
 
 void scrPointCloud::begin() {
 	camera.begin(getLiveBounds());
+	ofPushMatrix();
+	ofRotate(180,0,1,0);
+	
 }
 
 void scrPointCloud::end() {
+	ofPopMatrix();
 	camera.end();
 
 	ofRectangle bounds = getLiveBounds();
@@ -56,9 +55,6 @@ void scrPointCloud::end() {
 
 void scrPointCloud::drawPoints()
 {
-	ofPushMatrix();
-	ofRotate(180,0,1,0);
-	
     glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 	
@@ -76,27 +72,6 @@ void scrPointCloud::drawPoints()
 	glDisableClientState(GL_COLOR_ARRAY);
 	
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-	
-	ofPopMatrix();
-}
-
-void scrPointCloud::mouseDragged(float x, float y, float dx, float dy, int button)
-{
-	int boundsx, boundsy, boundswidth, boundsheight;
-	getLiveBounds(boundsx, boundsy, boundswidth, boundsheight);
-	
-	if (button==0)
-	{
-		spin.x += float(dy) / float(boundsheight) * 360.0f;
-		spin.y -= float(dx) / float(boundswidth) * 360.0f;
-		
-		spin.x = ofClamp(spin.x, -180, 180);
-	} else {
-		distance +=float(dy) / float(boundsheight) * 4.0f;
-		distance = ofClamp(distance, 0.1, 10);
-		
-		translate.z +=float(dx) / float(boundswidth) * 2.0f;
-	}
 }
 
 void scrPointCloud::clear()
