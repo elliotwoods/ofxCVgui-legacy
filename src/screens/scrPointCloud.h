@@ -20,6 +20,7 @@ public:
 	~scrPointCloud();
 	
 	void			mouseDragged(float x, float y, float dx, float dy, int button);
+	void		
 	int				pointSize;
 
     void            clear();
@@ -53,5 +54,5 @@ protected:
 	float			*localPositions;
 	bool			useLocal;
 
-	ofEasyCam		camera;
+	ofxGrabCam		camera;
 };

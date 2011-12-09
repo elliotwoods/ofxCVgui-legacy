@@ -24,6 +24,7 @@ _isSet(false)
 	glGenBuffersARB(1, &vbo[1]);
 //	ofAddListener(ofEvents.keyPressed, this, &scrPointCloud::keyPressed);
 
+	camera.setPosition(0,0,1);
 	useLocal = false;
 }
 
@@ -55,6 +56,9 @@ void scrPointCloud::end() {
 
 void scrPointCloud::drawPoints()
 {
+	ofPushMatrix();
+	ofRotate(180,0,1,0);
+	
     glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 	
@@ -72,6 +76,8 @@ void scrPointCloud::drawPoints()
 	glDisableClientState(GL_COLOR_ARRAY);
 	
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+	
+	ofPopMatrix();
 }
 
 void scrPointCloud::mouseDragged(float x, float y, float dx, float dy, int button)
