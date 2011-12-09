@@ -8,7 +8,7 @@
  */
 
 #include "ofMain.h"
-#include "GUIAssets.h"
+#include "include/GUIAssets.h"
 
 class Histogram : public GUIAssets
 {
@@ -20,35 +20,35 @@ class Histogram : public GUIAssets
 		void				clear();
 		int					getSelection();
         void                setSelection(int value);
-	
+
 		void				update();
 		void				draw(float x, float y, float width, float height);
-	
+
 		void				mouseDown(float x, float y);
 		string				mouseHover(float xX, float xY);
 		ofEvent<int>		updateSelection;
-		
+
 	protected:
 
 		void				updateBar(int iPixelX, int iClass, float maxheight);
-	
+
 		static int			_nHistograms;
-	
+
 		ofTexture			_texImage;
 		unsigned char*		_charImage;
 		bool				_isTextureUpToDate;
-	
+
 		int					_colour;
 		int *				_count;
 		int					_nClasses;
 		int					_Max;
 		bool				_isInitialised;
 		bool				_hasData;
-	
+
 		float				_selectionX;
 		int					_selectionIClass;
-		
+
 		float				_hoverX;
-	
+
 		string				_name;
 };
