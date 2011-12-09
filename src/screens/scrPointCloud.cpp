@@ -37,42 +37,15 @@ void scrPointCloud::drawContent()
     if (!_isSet)
         return;
     
-    begin();
-    drawPoints();
-    end();
 	
-}
+	ofRectangle bounds = getLiveBounds();
 
-void scrPointCloud::begin()
-{
-    ofPushStyle();
+    camera.begin(bounds);
+    drawPoints();
+    camera.end();
+
+    ofDrawBitmapString(ofToString(_nPoints), bounds.x + 10, bounds.y + 30);
 	
-	//temporarily store the viewport
-	glGetIntegerv(GL_VIEWPORT, _viewport_temp);
-	
-	//set the viewport to our screen only
-	int boundsx,boundsy,boundswidth,boundsheight;
-	getLiveBounds(boundsx, boundsy, boundswidth, boundsheight);
-	boundsy = ofGetHeight()-boundsy-boundsheight;
-	glViewport(boundsx, boundsy, boundswidth, boundsheight);
-	
-	//camera
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	gluPerspective(50.0f, float(boundswidth)/float(boundsheight), 0.1f, 10.0f);
-	gluLookAt(0, 0, -distance, 0, 0, 0, 0, 1, 0);
-	
-	//modelview
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-	glRotatef(spin.x, 1, 0, 0);
-	glRotatef(spin.y, 0, 1, 0);
-	glTranslatef(translate.x, translate.y, translate.z);
-	
-	glEnable(GL_DEPTH_TEST);
-	glPointSize(pointSize);
 }
 
 void scrPointCloud::drawPoints()
@@ -94,27 +67,6 @@ void scrPointCloud::drawPoints()
 	glDisableClientState(GL_COLOR_ARRAY);
 	
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-}
-
-void scrPointCloud::end()
-{
-    //clear world states
-	glDisable(GL_DEPTH_TEST);	
-	
-	//clear matricies
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
-	
-	//let's get our full viewport back
-	glViewport(_viewport_temp[0], _viewport_temp[1],
-			   _viewport_temp[2], _viewport_temp[3]);
-    
-    int x, y, w, h;
-    getLiveBounds(x,y,w,h);
-    
-    ofDrawBitmapString(ofToString(_nPoints), x + 10, y + 30);
 }
 
 void scrPointCloud::mouseDragged(float x, float y, float dx, float dy, int button)

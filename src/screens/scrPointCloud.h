@@ -9,6 +9,7 @@
  */
 
 #include "ofMain.h"
+#include "ofxGrabCam.h"
 
 #include "scrBase.h"
 
@@ -51,4 +52,6 @@ protected:
 
 	float			*localPositions;
 	bool			useLocal;
+
+	ofxGrabCam		camera;
 };
