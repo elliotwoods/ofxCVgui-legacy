@@ -36,16 +36,21 @@ void scrPointCloud::drawContent()
 {
     if (!_isSet)
         return;
-    
-	
-	ofRectangle bounds = getLiveBounds();
 
-    camera.begin(bounds);
+	begin();
     drawPoints();
-    camera.end();
+	end();
+}
 
-    ofDrawBitmapString(ofToString(_nPoints), bounds.x + 10, bounds.y + 30);
-	
+void scrPointCloud::begin() {
+	camera.begin(getLiveBounds());
+}
+
+void scrPointCloud::end() {
+	camera.end();
+
+	ofRectangle bounds = getLiveBounds();
+	ofDrawBitmapString(ofToString(_nPoints), bounds.x + 10, bounds.y + 30);
 }
 
 void scrPointCloud::drawPoints()

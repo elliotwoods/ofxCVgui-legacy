@@ -53,5 +53,5 @@ protected:
 	float			*localPositions;
 	bool			useLocal;
 
-	ofxGrabCam		camera;
+	ofEasyCam		camera;
 };
