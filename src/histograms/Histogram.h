@@ -8,7 +8,7 @@
  */
 
 #include "ofMain.h"
-#include "GUIAssets.h"
+#include "include/GUIAssets.h"
 
 class Histogram : public GUIAssets
 {

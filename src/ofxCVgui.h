@@ -7,15 +7,15 @@
  *  Copyright 2010 Kimchi and Chips. All rights reserved.
  *
  */
-#include "GUIGlobal.h"
-#include "GUIConstants.h"
-#include "GUIAssets.h"
-#include "GUIDesigner.h"
+#include "include/GUIGlobal.h"
+#include "include/GUIConstants.h"
+#include "include/GUIAssets.h"
+#include "include/GUIDesigner.h"
 
-#include "Histogram.h"
+#include "histograms/Histogram.h"
 
-#include "screens.h"
-#include "widgets.h"
+#include "screens/screens.h"
+#include "widgets/widgets.h"
 
 #include "ofMain.h"
 #include "ofEvents.h"

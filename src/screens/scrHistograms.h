@@ -8,9 +8,9 @@
  *
  */
 
-#include "scrBase.h"
+#include "screens/scrBase.h"
 
-#include "Histogram.h"
+#include "histograms/Histogram.h"
 
 class scrHistograms : public scrBase
 {

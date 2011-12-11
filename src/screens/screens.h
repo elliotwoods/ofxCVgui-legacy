@@ -7,14 +7,13 @@
 //
 #pragma once
 
-#include "scrHistograms.h"
-#include "scrWidgets.h"
-#include "scrFileSelect.h"
-#include "scrPointCloud.h"
-#include "scrVbo.h" //might remove this.
-#include "scrDraw3D.h"
-#include "scrDraw2D.h"
-#include "scrViewport.h"
+#include "screens/scrHistograms.h"
+#include "screens/scrWidgets.h"
+#include "screens/scrFileSelect.h"
+#include "screens/scrVbo.h" //might remove this.
+#include "screens/scrDraw3D.h"
+#include "screens/scrDraw2D.h"
+#include "screens/scrViewport.h"
 
-#include "scrGroupGrid.h"
-#include "scrGroupTabbed.h"
+#include "screens/groups/scrGroupGrid.h"
+#include "screens/groups/scrGroupTabbed.h"

@@ -7,7 +7,7 @@
 //
 
 #include "ofMain.h"
-#include "screens.h"
+#include "screens/screens.h"
 
 class GUIDesigner {
 public:	

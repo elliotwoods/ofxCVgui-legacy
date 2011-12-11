@@ -9,15 +9,11 @@
  *
  */
 
-#include "GUIAssets.h"
-#include "GUIGlobal.h"
+#include "include/GUIAssets.h"
+#include "include/GUIGlobal.h"
 
 #include "ofMain.h"
 #include "ofEvents.h"
-
-#include "Histogram.h"
-
-#include "btnBase.h"
 
 class scrBase : public GUIAssets, public GUIGlobal
 {

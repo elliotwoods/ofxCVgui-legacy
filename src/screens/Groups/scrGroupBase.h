@@ -8,7 +8,7 @@
  *
  */
 
-#include "scrBase.h"
+#include "screens/scrBase.h"
 
 class scrGroupBase : public scrBase
 {

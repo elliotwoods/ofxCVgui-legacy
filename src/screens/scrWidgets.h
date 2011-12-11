@@ -9,7 +9,7 @@
  */
 
 #include "scrBase.h"
-#include "wdgBase.h"
+#include "widgets/wdgBase.h"
 
 #define WIDGET_PADDING 10
 class scrWidgets : public scrBase

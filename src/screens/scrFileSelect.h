@@ -8,7 +8,7 @@
  */
 
 #include "scrWidgets.h"
-#include "wdgButton.h"
+#include "widgets/wdgButton.h"
 
 class scrFileSelect : public scrWidgets, public ofDirectory
 {
