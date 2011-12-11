@@ -17,9 +17,9 @@ _isSet(false)
 	pointSize = 2;
 	glGenBuffersARB(1, &vbo[0]);
 	glGenBuffersARB(1, &vbo[1]);
-//	ofAddListener(ofEvents.keyPressed, this, &scrPointCloud::keyPressed);
 
 	camera.setPosition(0,0,1);
+	camera.setFixUpwards(false);
 	useLocal = false;
 }
 
@@ -42,7 +42,7 @@ void scrPointCloud::begin() {
 	camera.begin(getLiveBounds());
 	ofPushMatrix();
 	ofRotate(180,0,1,0);
-	
+	ofRotate(180,0,0,1);	
 }
 
 void scrPointCloud::end() {

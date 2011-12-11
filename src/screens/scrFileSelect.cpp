@@ -50,8 +50,7 @@ void scrFileSelect::drawContent()
 
 void scrFileSelect::refresh()
 {
-	string path = ofToDataPath(_path, true);
-	_nFiles = listDir(path);
+	_nFiles = listDir(_path);
 	
 	for (int i=3; i<_widgets.size(); i++)
 		delete _widgets[i];
