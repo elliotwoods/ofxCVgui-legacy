@@ -13,7 +13,7 @@ _node(node),
 scrBase(caption)
 {
 	ofAddListener(ofEvents.keyPressed, this, &scrDraw3D::keyPressed);
-	camera.setDistance(1.0f);
+	camera.setPosition(0,0,1.0f);
 	camera.setNearClip(0.01f);
 	
 }
@@ -23,6 +23,8 @@ void scrDraw3D::drawContent()
 	ofRectangle viewport = getLiveBounds();
 	
 	camera.begin(viewport);
+	ofRotate(180, 0, 1, 0);
+
 	glEnable(GL_DEPTH_TEST);
 	_node.draw();
 

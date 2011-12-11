@@ -9,6 +9,7 @@
 #include "ofMain.h"
 
 #include "scrBase.h"
+#include "ofxGrabCam.h"
 
 class scrDraw3D : public scrBase {
 	
@@ -26,6 +27,6 @@ protected:
 	virtual void	drawContent();
 	
 	
-	ofEasyCam		camera;
+	ofxGrabCam		camera;
 	ofNode&			_node;
 };
