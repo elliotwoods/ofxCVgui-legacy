@@ -19,6 +19,8 @@ public:
 	void			keyPressed(ofKeyEventArgs & args);
 	ofNode&			getNodeReference();
 	
+	void			enableGrid(float size = 10.0f);
+	
 	float			pointSize;
 	ofEvent<ofNode>	evtDraw3D; ///< differs from standard event, in that it is triggered after the transforms have been applied
 	
@@ -26,7 +28,7 @@ public:
 protected:
 	virtual void	drawContent();
 	
-	
+	float			gridSize;
 	ofxGrabCam		camera;
 	ofNode&			_node;
 };

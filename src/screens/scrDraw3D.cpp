@@ -15,7 +15,7 @@ scrBase(caption)
 	ofAddListener(ofEvents.keyPressed, this, &scrDraw3D::keyPressed);
 	camera.setPosition(0,0,1.0f);
 	camera.setNearClip(0.01f);
-	
+	gridSize = 0.0f;
 }
 
 void scrDraw3D::drawContent()
@@ -26,6 +26,8 @@ void scrDraw3D::drawContent()
 	ofRotate(180, 0, 1, 0);
 
 	glEnable(GL_DEPTH_TEST);
+	if (gridSize > 0)
+		ofDrawGrid(gridSize);
 	_node.draw();
 
 	_node.transformGL();
@@ -59,4 +61,8 @@ void scrDraw3D::keyPressed(ofKeyEventArgs &args) {
 
 ofNode& scrDraw3D::getNodeReference() {
 	return _node;
+}
+
+void scrDraw3D::enableGrid(float size) {
+	gridSize = size;
 }
